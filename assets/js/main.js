@@ -266,6 +266,31 @@ function initLoginInteractivity() {
 }
 
 /**
+ * Chart.js tooltip styling aligned with .chart-tooltip
+ */
+function hrmChartTooltipOptions(overrides = {}) {
+    return {
+        enabled: true,
+        backgroundColor: '#0f172a',
+        titleColor: '#ffffff',
+        bodyColor: 'rgba(255, 255, 255, 0.72)',
+        footerColor: 'rgba(255, 255, 255, 0.72)',
+        padding: 12,
+        cornerRadius: 8,
+        titleFont: { family: 'Outfit, sans-serif', size: 13, weight: '700' },
+        bodyFont: { family: 'Outfit, sans-serif', size: 12, weight: '600' },
+        footerFont: { family: 'Outfit, sans-serif', size: 12, weight: '600' },
+        displayColors: true,
+        boxPadding: 6,
+        caretPadding: 8,
+        borderWidth: 0,
+        ...overrides
+    };
+}
+
+window.hrmChartTooltipOptions = hrmChartTooltipOptions;
+
+/**
  * Displays compact hover details for dashboard chart elements
  */
 function initChartTooltips() {
@@ -401,20 +426,17 @@ function initEmployeeTables() {
         }
 
         function getFilteredRows() {
-            const branch = getFilterValue('branch');
             const department = getFilterValue('department');
             const date = getFilterValue('date');
             const search = getFilterValue('search');
 
             return allRows.filter(row => {
-                const rowBranch = getRowValue(row, 'branch').toLowerCase();
                 const rowDepartment = getRowValue(row, 'department').toLowerCase();
                 const rowDate = getRowValue(row, 'joinDate').toLowerCase();
                 const rowName = getRowValue(row, 'name').toLowerCase();
                 const rowNumber = getRowValue(row, 'number').toLowerCase();
 
-                return (!branch || rowBranch === branch)
-                    && (!department || rowDepartment === department)
+                return (!department || rowDepartment === department)
                     && (!date || rowDate === date)
                     && (!search || rowName.includes(search) || rowNumber.includes(search));
             });

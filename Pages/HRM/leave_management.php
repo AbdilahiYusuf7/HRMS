@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $pageTitle = "Leave Management";
 $activePage = "leave-management";
 $assetPath = "../../assets";
@@ -1008,7 +1008,7 @@ include '../../includes/header_sidebar.php';
     <div class="employee-records-header">
         <div>
             <h2>Employee Leave Requests</h2>
-            <p>Recent leave requests across branches with mixed approval statuses.</p>
+            <p>Recent leave requests with mixed approval statuses.</p>
         </div>
     </div>
 
@@ -1047,7 +1047,7 @@ include '../../includes/header_sidebar.php';
                     <tr>
                         <td><div class="employee-table-name"><span class="employee-avatar">FX</span><div><strong>Fadumo Xasan</strong><span>EMP-0002</span></div></div></td>
                         <td>Finance</td>
-                        <td>Xero Awr Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>Sick Leave</td>
                         <td>2</td>
                         <td>2026-04-26 to 2026-04-27</td>
@@ -1055,14 +1055,14 @@ include '../../includes/header_sidebar.php';
                         <td><span class="employee-status active">Approved</span></td>
                         <td>
                             <div class="leave-request-actions">
-                                <button type="button" class="leave-request-action icon-only" aria-label="View Fadumo Xasan leave request" data-leave-request-view data-employee="Fadumo Xasan" data-number="EMP-0002" data-department="Finance" data-branch="Xero Awr Branch" data-type="Sick Leave" data-days="2" data-dates="2026-04-26 to 2026-04-27" data-submitted="2026-04-24" data-status="Approved"><span class="material-symbols-rounded">visibility</span></button>
+                                <button type="button" class="leave-request-action icon-only" aria-label="View Fadumo Xasan leave request" data-leave-request-view data-employee="Fadumo Xasan" data-number="EMP-0002" data-department="Finance" data-branch="Idaacada Branch" data-type="Sick Leave" data-days="2" data-dates="2026-04-26 to 2026-04-27" data-submitted="2026-04-24" data-status="Approved"><span class="material-symbols-rounded">visibility</span></button>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td><div class="employee-table-name"><span class="employee-avatar">MA</span><div><strong>Mahad Axmed</strong><span>EMP-0003</span></div></div></td>
                         <td>Operations</td>
-                        <td>Togdheer Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>Emergency Leave</td>
                         <td>1</td>
                         <td>2026-04-29 to 2026-04-29</td>
@@ -1070,7 +1070,7 @@ include '../../includes/header_sidebar.php';
                         <td><span class="leave-rule-badge approval">Pending</span></td>
                         <td>
                             <div class="leave-request-actions">
-                                <button type="button" class="leave-request-action icon-only" aria-label="View Mahad Axmed leave request" data-leave-request-view data-employee="Mahad Axmed" data-number="EMP-0003" data-department="Operations" data-branch="Togdheer Branch" data-type="Emergency Leave" data-days="1" data-dates="2026-04-29 to 2026-04-29" data-submitted="2026-04-25" data-status="Pending"><span class="material-symbols-rounded">visibility</span></button>
+                                <button type="button" class="leave-request-action icon-only" aria-label="View Mahad Axmed leave request" data-leave-request-view data-employee="Mahad Axmed" data-number="EMP-0003" data-department="Operations" data-branch="Idaacada Branch" data-type="Emergency Leave" data-days="1" data-dates="2026-04-29 to 2026-04-29" data-submitted="2026-04-25" data-status="Pending"><span class="material-symbols-rounded">visibility</span></button>
                                 <button type="button" class="leave-request-action icon-only approve" aria-label="Approve Mahad Axmed leave request"><span class="material-symbols-rounded">check</span></button>
                                 <button type="button" class="leave-request-action icon-only reject" aria-label="Reject Mahad Axmed leave request"><span class="material-symbols-rounded">close</span></button>
                             </div>
@@ -1079,7 +1079,7 @@ include '../../includes/header_sidebar.php';
                     <tr>
                         <td><div class="employee-table-name"><span class="employee-avatar">SM</span><div><strong>Sahra Maxamed</strong><span>EMP-0004</span></div></div></td>
                         <td>Marketing</td>
-                        <td>Calaamada Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>Casual Leave</td>
                         <td>3</td>
                         <td>2026-05-03 to 2026-05-05</td>
@@ -1087,14 +1087,14 @@ include '../../includes/header_sidebar.php';
                         <td><span class="employee-status inactive">Rejected</span></td>
                         <td>
                             <div class="leave-request-actions">
-                                <button type="button" class="leave-request-action icon-only" aria-label="View Sahra Maxamed leave request" data-leave-request-view data-employee="Sahra Maxamed" data-number="EMP-0004" data-department="Marketing" data-branch="Calaamada Branch" data-type="Casual Leave" data-days="3" data-dates="2026-05-03 to 2026-05-05" data-submitted="2026-04-22" data-status="Rejected"><span class="material-symbols-rounded">visibility</span></button>
+                                <button type="button" class="leave-request-action icon-only" aria-label="View Sahra Maxamed leave request" data-leave-request-view data-employee="Sahra Maxamed" data-number="EMP-0004" data-department="Marketing" data-branch="Idaacada Branch" data-type="Casual Leave" data-days="3" data-dates="2026-05-03 to 2026-05-05" data-submitted="2026-04-22" data-status="Rejected"><span class="material-symbols-rounded">visibility</span></button>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td><div class="employee-table-name"><span class="employee-avatar">HA</span><div><strong>Hodan Ali</strong><span>EMP-0005</span></div></div></td>
                         <td>Administration</td>
-                        <td>Masalaha Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>Annual Leave</td>
                         <td>5</td>
                         <td>2026-05-10 to 2026-05-14</td>
@@ -1102,7 +1102,7 @@ include '../../includes/header_sidebar.php';
                         <td><span class="employee-status active">Approved</span></td>
                         <td>
                             <div class="leave-request-actions">
-                                <button type="button" class="leave-request-action icon-only" aria-label="View Hodan Ali leave request" data-leave-request-view data-employee="Hodan Ali" data-number="EMP-0005" data-department="Administration" data-branch="Masalaha Branch" data-type="Annual Leave" data-days="5" data-dates="2026-05-10 to 2026-05-14" data-submitted="2026-04-23" data-status="Approved"><span class="material-symbols-rounded">visibility</span></button>
+                                <button type="button" class="leave-request-action icon-only" aria-label="View Hodan Ali leave request" data-leave-request-view data-employee="Hodan Ali" data-number="EMP-0005" data-department="Administration" data-branch="Idaacada Branch" data-type="Annual Leave" data-days="5" data-dates="2026-05-10 to 2026-05-14" data-submitted="2026-04-23" data-status="Approved"><span class="material-symbols-rounded">visibility</span></button>
                             </div>
                         </td>
                     </tr>

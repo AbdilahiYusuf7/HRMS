@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $pageTitle = "Payroll Integration";
 $activePage = "payroll-integration";
 $assetPath = "../../assets";
@@ -190,7 +190,7 @@ include '../../includes/header_sidebar.php';
                             </div>
                         </td>
                         <td>Head of Finances</td>
-                        <td>Xero Awr Branch</td>
+                        <td>Idaacada Branch</td>
                         <td><span class="payroll-money">$920</span></td>
                         <td><span class="payroll-money absence">$20</span></td>
                         <td><span class="payroll-money performance">$0</span></td>
@@ -204,7 +204,7 @@ include '../../includes/header_sidebar.php';
                             </div>
                         </td>
                         <td>Operations Manager</td>
-                        <td>Togdheer Branch</td>
+                        <td>Idaacada Branch</td>
                         <td><span class="payroll-money">$880</span></td>
                         <td><span class="payroll-money absence">$35</span></td>
                         <td><span class="payroll-money performance">$0</span></td>
@@ -218,7 +218,7 @@ include '../../includes/header_sidebar.php';
                             </div>
                         </td>
                         <td>Marketing Manager</td>
-                        <td>Calaamada Branch</td>
+                        <td>Idaacada Branch</td>
                         <td><span class="payroll-money">$650</span></td>
                         <td><span class="payroll-money absence">$25</span></td>
                         <td><span class="payroll-money performance">$30</span></td>

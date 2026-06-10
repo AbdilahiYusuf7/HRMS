@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $pageTitle = "Performance";
 $activePage = "performance";
 $assetPath = "../../assets";
@@ -1049,7 +1049,7 @@ include '../../includes/header_sidebar.php';
                                     <div class="employee-row-actions"><button type="button" aria-label="Review Amina Yusuf" data-performance-review-open><span class="material-symbols-rounded">rate_review</span></button></div>
                                 </td>
                             </tr>
-                            <tr data-employee="Fadumo Xasan" data-number="EMP-0002" data-role="Finance Officer" data-branch="Xero Awr Branch" data-department="Head of Finances" data-agenda="Audit Follow Up" data-score="95" data-performance-label="Good" data-status="Top Performer">
+                            <tr data-employee="Fadumo Xasan" data-number="EMP-0002" data-role="Finance Officer" data-branch="Idaacada Branch" data-department="Head of Finances" data-agenda="Audit Follow Up" data-score="95" data-performance-label="Good" data-status="Top Performer">
                                 <td>
                                     <div class="employee-table-name"><span class="employee-avatar">FX</span>
                                         <div><strong>Fadumo Xasan</strong><span>EMP-0002</span></div>
@@ -1058,7 +1058,7 @@ include '../../includes/header_sidebar.php';
                                 <td>
                                     <div class="performance-review-department">
                                         <strong>Head of Finances</strong>
-                                        <span>Xero Awr Branch</span>
+                                        <span>Idaacada Branch</span>
                                     </div>
                                 </td>
                                 <td>Audit Follow Up</td>
@@ -1212,8 +1212,8 @@ document.addEventListener('DOMContentLoaded', function () {
             subtitle: 'Audit Follow Up | 2 employees under this department',
             items: ['Check payment records', 'Follow up missing receipts', 'Prepare simple finance report'],
             employees: [
-                { name: 'Fadumo Xasan', meta: 'EMP-0002 | Finance Officer | Xero Awr Branch' },
-                { name: 'Roda Jama', meta: 'EMP-0007 | Financial Analyst | Xero Awr Branch' }
+                { name: 'Fadumo Xasan', meta: 'EMP-0002 | Finance Officer | Idaacada Branch' },
+                { name: 'Roda Jama', meta: 'EMP-0007 | Financial Analyst | Idaacada Branch' }
             ]
         },
         operations: {
@@ -1221,8 +1221,8 @@ document.addEventListener('DOMContentLoaded', function () {
             subtitle: 'Branch Follow Up | 2 employees under this department',
             items: ['Check branch work', 'Follow up daily problems', 'Report unfinished tasks'],
             employees: [
-                { name: 'Mahad Axmed', meta: 'EMP-0003 | Operations Supervisor | Togdheer Branch' },
-                { name: 'Nimco Abdi', meta: 'EMP-0012 | Operations Officer | Togdheer Branch' }
+                { name: 'Mahad Axmed', meta: 'EMP-0003 | Operations Supervisor | Idaacada Branch' },
+                { name: 'Nimco Abdi', meta: 'EMP-0012 | Operations Officer | Idaacada Branch' }
             ]
         },
         marketing: {
@@ -1230,8 +1230,8 @@ document.addEventListener('DOMContentLoaded', function () {
             subtitle: 'Customer Follow Up | 2 employees under this department',
             items: ['Call customers', 'Share new offers', 'Write customer feedback'],
             employees: [
-                { name: 'Sahra Maxamed', meta: 'EMP-0004 | Marketing Coordinator | Calaamada Branch' },
-                { name: 'Ahmed Jama', meta: 'EMP-0009 | Marketing Associate | Calaamada Branch' }
+                { name: 'Sahra Maxamed', meta: 'EMP-0004 | Marketing Coordinator | Idaacada Branch' },
+                { name: 'Ahmed Jama', meta: 'EMP-0009 | Marketing Associate | Idaacada Branch' }
             ]
         },
         manager: {
@@ -1239,8 +1239,8 @@ document.addEventListener('DOMContentLoaded', function () {
             subtitle: 'Office Work Follow Up | 2 employees under this department',
             items: ['Check office records', 'Arrange daily work', 'Follow up pending documents'],
             employees: [
-                { name: 'Hodan Ali', meta: 'EMP-0005 | Administration Officer | Masalaha Branch' },
-                { name: 'Mohamed Yusuf', meta: 'EMP-0010 | Records Coordinator | Masalaha Branch' }
+                { name: 'Hodan Ali', meta: 'EMP-0005 | Administration Officer | Idaacada Branch' },
+                { name: 'Mohamed Yusuf', meta: 'EMP-0010 | Records Coordinator | Idaacada Branch' }
             ]
         },
         it: {
@@ -1248,8 +1248,8 @@ document.addEventListener('DOMContentLoaded', function () {
             subtitle: 'Computer And Website Check | 2 employees under this department',
             items: ['Diagnose website problems', 'Fix computers', 'Help staff with system issues'],
             employees: [
-                { name: 'Mustafe Cabdi', meta: 'EMP-0006 | Systems Support Engineer | Jigjiga Yar Branch' },
-                { name: 'Ilwad Noor', meta: 'EMP-0011 | Software Developer | Jigjiga Yar Branch' }
+                { name: 'Mustafe Cabdi', meta: 'EMP-0006 | Systems Support Engineer | Idaacada Branch' },
+                { name: 'Ilwad Noor', meta: 'EMP-0011 | Software Developer | Idaacada Branch' }
             ]
         }
     };

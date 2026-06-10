@@ -2765,6 +2765,10 @@ body.hrm-modal-open {
   r: 9;
 }
 
+[data-chart-title][data-chart-value] {
+  cursor: pointer;
+}
+
 .chart-tooltip {
   position: absolute;
   z-index: 500;

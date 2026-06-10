@@ -1,0 +1,15 @@
+{
+    "applicants": {
+        "APP-0001": {
+            "id": "APP-0001",
+            "name": "Amina Yusuf",
+            "phone": "+252 61 700 1101",
+            "email": "amina.yusuf@email.demo",
+            "vacancy_id": "VAC-0001",
+            "applied_position": "Human Resource Officer",
+            "cv_file": "../../uploads/hrm_recruitment/cvs/APP-0001-20260609235735.pdf",
+            "status": "Shortlisted",
+            "created_at": "2026-03-05T10:00:00+00:00"
+        }
+    }
+}

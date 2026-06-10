@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $pageTitle = "Promotion & Ranking Dashboard";
 $activePage = "promotion-ranking";
 $assetPath = "../../assets";
@@ -657,7 +657,7 @@ include '../../includes/header_sidebar.php';
                 <div class="promotion-activity-top">
                     <div>
                         <h3>Mustafe Cabdi</h3>
-                        <p>Information Technology · Jigjiga Yar Branch</p>
+                        <p>Information Technology · Idaacada Branch</p>
                     </div>
                     <span class="promotion-pill pending">Pending</span>
                 </div>
@@ -669,7 +669,7 @@ include '../../includes/header_sidebar.php';
                 <div class="promotion-activity-top">
                     <div>
                         <h3>Fadumo Xasan</h3>
-                        <p>Finance · Xero Awr Branch</p>
+                        <p>Finance · Idaacada Branch</p>
                     </div>
                     <span class="employee-status active">Approved</span>
                 </div>
@@ -735,7 +735,7 @@ include '../../includes/header_sidebar.php';
                 <div class="promotion-activity-top">
                     <div>
                         <h3>Fadumo Xasan</h3>
-                        <p>Finance · Xero Awr Branch</p>
+                        <p>Finance · Idaacada Branch</p>
                     </div>
                     <span class="promotion-pill pending">Pending</span>
                 </div>
@@ -747,7 +747,7 @@ include '../../includes/header_sidebar.php';
                 <div class="promotion-activity-top">
                     <div>
                         <h3>Mustafe Cabdi</h3>
-                        <p>Information Technology · Jigjiga Yar Branch</p>
+                        <p>Information Technology · Idaacada Branch</p>
                     </div>
                     <span class="promotion-pill pending">Pending</span>
                 </div>
@@ -759,7 +759,7 @@ include '../../includes/header_sidebar.php';
                 <div class="promotion-activity-top">
                     <div>
                         <h3>Mahad Axmed</h3>
-                        <p>Operations · Togdheer Branch</p>
+                        <p>Operations · Idaacada Branch</p>
                     </div>
                     <span class="promotion-pill pending">Pending</span>
                 </div>

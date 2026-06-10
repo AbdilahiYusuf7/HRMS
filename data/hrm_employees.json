@@ -1,0 +1,73 @@
+{
+    "EMP-005": {
+        "employee_number": "EMP-005",
+        "name": "Abdilahi Yusuf",
+        "gender": "Male",
+        "date_of_birth": "2026-06-09",
+        "phone": "+252657939755",
+        "email": "Abdilahiyh@gmail.com",
+        "national_id": "43123324",
+        "address": "Koodbuur",
+        "department": "Information Technology",
+        "role": "Software Developer",
+        "employment_type": "Full Time",
+        "join_date": "2026-06-09",
+        "branch": "Idaacada Branch",
+        "status": "Active",
+        "basic_salary": "500",
+        "allowance": "150",
+        "contract_type": "Permanent",
+        "contract_start_date": "2026-06-09",
+        "contract_end_date": "2030-01-09",
+        "notes": "signed deal done",
+        "emergency_contact_name": "Yusuf Ali",
+        "emergency_relationship": "father",
+        "emergency_phone": "+252657939755",
+        "emergency_address": "Koodbuur",
+        "location": "Koodbuur",
+        "initials": "AY",
+        "documents": [
+            {
+                "type": "CV",
+                "document": "Employee CV",
+                "category": "Profile",
+                "status": "Uploaded",
+                "updated": "2026-06-09",
+                "key": "cv",
+                "original_name": "cv_design_a4.pdf",
+                "url": "../../uploads/hrm_employees/EMP-005/cv-20260609194801-8c04636e.pdf"
+            },
+            {
+                "type": "Employee Contract",
+                "document": "Employee Contract",
+                "category": "Employment",
+                "status": "Uploaded",
+                "updated": "2026-06-09",
+                "key": "employee-contract",
+                "original_name": "contract_design_a4.pdf",
+                "url": "../../uploads/hrm_employees/EMP-005/employee-contract-20260609194801-0236fe3b.pdf"
+            },
+            {
+                "type": "Qualification",
+                "document": "Qualification Document",
+                "category": "Academic",
+                "status": "Uploaded",
+                "updated": "2026-06-09",
+                "key": "certificate",
+                "original_name": "qualification_file.pdf",
+                "url": "../../uploads/hrm_employees/EMP-005/certificate-20260609194801-17934eab.pdf"
+            },
+            {
+                "type": "National ID Card",
+                "document": "National ID Card",
+                "category": "Identity",
+                "status": "Uploaded",
+                "updated": "2026-06-09",
+                "key": "national-id",
+                "original_name": "certificate_design.pdf",
+                "url": "../../uploads/hrm_employees/EMP-005/national-id-20260609194801-7fd00639.pdf"
+            }
+        ],
+        "created_at": "2026-06-09T19:48:01+02:00"
+    }
+}

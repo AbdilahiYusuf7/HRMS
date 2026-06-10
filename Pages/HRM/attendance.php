@@ -1,8 +1,9 @@
-<?php
+﻿<?php
 $pageTitle = "Attendance";
 $activePage = "attendance";
 $assetPath = "../../assets";
 $menuPath = __DIR__ . "/menu.php";
+require_once __DIR__ . '/../../includes/hrm_config.php';
 include '../../includes/header_sidebar.php';
 ?>
 <style>
@@ -387,7 +388,7 @@ include '../../includes/header_sidebar.php';
         <div>
             <h3>Present Today</h3>
             <strong>1,214</strong>
-            <p>Employees checked in across active branches.</p>
+            <p>Employees checked in at <?php echo htmlspecialchars(hrmBranchName()); ?> today.</p>
         </div>
         <div class="employee-insight-icon">
             <span class="material-symbols-rounded">how_to_reg</span>
@@ -683,21 +684,21 @@ include '../../includes/header_sidebar.php';
                         <td><div class="employee-table-name"><span class="employee-avatar">CC</span><div><strong>Cabdiraxmaan Cali</strong><span>EMP-0001</span></div></div></td>
                         <td>Human Resource</td><td>Idaacada Branch</td><td>08:01 AM</td><td>05:12 PM</td><td>09h 11m</td><td><span class="employee-status active">Present</span></td>
                     </tr>
-                    <tr data-employee="Fadumo Xasan" data-number="EMP-0002" data-department="Finance" data-branch="Xero Awr Branch" data-date="2026-04-24" data-check-in="08:18" data-check-out="17:05" data-work-hours="8.78" data-status="Late">
+                    <tr data-employee="Fadumo Xasan" data-number="EMP-0002" data-department="Finance" data-branch="Idaacada Branch" data-date="2026-04-24" data-check-in="08:18" data-check-out="17:05" data-work-hours="8.78" data-status="Late">
                         <td><div class="employee-table-name"><span class="employee-avatar">FX</span><div><strong>Fadumo Xasan</strong><span>EMP-0002</span></div></div></td>
-                        <td>Finance</td><td>Xero Awr Branch</td><td>08:18 AM</td><td>05:05 PM</td><td>08h 47m</td><td><span class="employee-status late">Late</span></td>
+                        <td>Finance</td><td>Idaacada Branch</td><td>08:18 AM</td><td>05:05 PM</td><td>08h 47m</td><td><span class="employee-status late">Late</span></td>
                     </tr>
-                    <tr data-employee="Mahad Axmed" data-number="EMP-0003" data-department="Operations" data-branch="Togdheer Branch" data-date="2026-04-24" data-check-in="07:55" data-check-out="17:10" data-work-hours="9.25" data-status="Present">
+                    <tr data-employee="Mahad Axmed" data-number="EMP-0003" data-department="Operations" data-branch="Idaacada Branch" data-date="2026-04-24" data-check-in="07:55" data-check-out="17:10" data-work-hours="9.25" data-status="Present">
                         <td><div class="employee-table-name"><span class="employee-avatar">MA</span><div><strong>Mahad Axmed</strong><span>EMP-0003</span></div></div></td>
-                        <td>Operations</td><td>Togdheer Branch</td><td>07:55 AM</td><td>05:10 PM</td><td>09h 15m</td><td><span class="employee-status active">Present</span></td>
+                        <td>Operations</td><td>Idaacada Branch</td><td>07:55 AM</td><td>05:10 PM</td><td>09h 15m</td><td><span class="employee-status active">Present</span></td>
                     </tr>
-                    <tr data-employee="Sahra Maxamed" data-number="EMP-0004" data-department="Marketing" data-branch="Calaamada Branch" data-date="2026-04-24" data-check-in="" data-check-out="" data-work-hours="0" data-status="Absent">
+                    <tr data-employee="Sahra Maxamed" data-number="EMP-0004" data-department="Marketing" data-branch="Idaacada Branch" data-date="2026-04-24" data-check-in="" data-check-out="" data-work-hours="0" data-status="Absent">
                         <td><div class="employee-table-name"><span class="employee-avatar">SM</span><div><strong>Sahra Maxamed</strong><span>EMP-0004</span></div></div></td>
-                        <td>Marketing</td><td>Calaamada Branch</td><td>--</td><td>--</td><td>00h 00m</td><td><span class="employee-status inactive">Absent</span></td>
+                        <td>Marketing</td><td>Idaacada Branch</td><td>--</td><td>--</td><td>00h 00m</td><td><span class="employee-status inactive">Absent</span></td>
                     </tr>
-                    <tr data-employee="Hodan Maxamed" data-number="EMP-0005" data-department="Finance" data-branch="Hargaysa Branch" data-date="2026-04-24" data-check-in="" data-check-out="" data-work-hours="0" data-status="On Leave">
+                    <tr data-employee="Hodan Maxamed" data-number="EMP-0005" data-department="Finance" data-branch="Idaacada Branch" data-date="2026-04-24" data-check-in="" data-check-out="" data-work-hours="0" data-status="On Leave">
                         <td><div class="employee-table-name"><span class="employee-avatar">HM</span><div><strong>Hodan Maxamed</strong><span>EMP-0005</span></div></div></td>
-                        <td>Finance</td><td>Hargaysa Branch</td><td>--</td><td>--</td><td>On Leave</td><td><span class="employee-status leave">On Leave</span></td>
+                        <td>Finance</td><td>Idaacada Branch</td><td>--</td><td>--</td><td>On Leave</td><td><span class="employee-status leave">On Leave</span></td>
                     </tr>
                     <tr data-employee="Mustafe Cabdi" data-number="EMP-0006" data-department="Information Technology" data-branch="Idaacada Branch" data-date="2026-04-24" data-check-in="08:07" data-check-out="17:01" data-work-hours="8.9" data-status="Late">
                         <td><div class="employee-table-name"><span class="employee-avatar">MC</span><div><strong>Mustafe Cabdi</strong><span>EMP-0006</span></div></div></td>
@@ -749,21 +750,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function filterRows() {
-        var branch = getFilter('branch');
         var department = getFilter('department');
         var status = getFilter('status');
         var date = getFilter('date');
         var search = getFilter('search');
 
         return allRows.filter(function (row) {
-            var matchesBranch = !branch || getRowValue(row, 'branch').toLowerCase() === branch;
             var matchesDepartment = !department || getRowValue(row, 'department').toLowerCase() === department;
             var matchesStatus = !status || getRowValue(row, 'status').toLowerCase() === status;
             var matchesDate = !date || getRowValue(row, 'date') === date;
             var searchText = (getRowValue(row, 'employee') + ' ' + getRowValue(row, 'number')).toLowerCase();
             var matchesSearch = !search || searchText.indexOf(search) !== -1;
 
-            return matchesBranch && matchesDepartment && matchesStatus && matchesDate && matchesSearch;
+            return matchesDepartment && matchesStatus && matchesDate && matchesSearch;
         });
     }
 

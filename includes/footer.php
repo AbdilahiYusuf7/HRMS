@@ -1,10 +1,10 @@
             </main>
             <!-- Page Content Ends Here -->
 
-            <!-- Main Footer -->
+            <!-- Main Footer -->i mean the 
             <footer class="footer">
                 <div class="footer-container">
-                    <p>&copy; <?php echo date("Y"); ?> Egal International Airport. All rights reserved.</p>
+                    <p>&copy; <?php echo date("Y"); ?> Human Resource Mangement System. All rights reserved.</p>
                 </div>
             </footer>
         </div>

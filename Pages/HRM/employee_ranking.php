@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $pageTitle = "Employee Ranking";
 $activePage = "employee-ranking";
 $assetPath = "../../assets";
@@ -1031,7 +1031,7 @@ include '../../includes/header_sidebar.php';
     <div class="employee-filter-header">
         <div>
             <h2>Filters</h2>
-            <p>Refine employee ranking by organization, branch, department, role, rank, grade, and eligibility.</p>
+            <p>Refine employee ranking by department, role, rank, grade, and eligibility.</p>
         </div>
         <button type="button" class="employee-filter-settings" aria-label="Filter settings">
             <span class="material-symbols-rounded">tune</span>
@@ -1053,17 +1053,6 @@ include '../../includes/header_sidebar.php';
                 <option>All Organizations</option>
                 <option>Egal International Airport</option>
                 <option>Operations Directorate</option>
-            </select>
-        </label>
-
-        <label>
-            <span>Branch / Location</span>
-            <select class="form-control">
-                <option>All Branches</option>
-                <option>Idaacada Branch</option>
-                <option>Xero Awr Branch</option>
-                <option>Jigjiga Yar Branch</option>
-                <option>Masalaha Branch</option>
             </select>
         </label>
 
@@ -1181,7 +1170,7 @@ include '../../includes/header_sidebar.php';
                         <td><button type="button" class="ranking-action-trigger" data-ranking-action-toggle data-employee-name="Cabdiraxmaan Cali" aria-expanded="false"><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
                     <tr>
-                        <td><div class="ranking-employee-cell"><strong>Fadumo Xasan</strong><span>Xero Awr Branch</span></div></td>
+                        <td><div class="ranking-employee-cell"><strong>Fadumo Xasan</strong><span>Idaacada Branch</span></div></td>
                         <td>EMP-0002</td>
                         <td>Finance</td>
                         <td>Finance Officer</td>
@@ -1196,7 +1185,7 @@ include '../../includes/header_sidebar.php';
                         <td><button type="button" class="ranking-action-trigger" data-ranking-action-toggle data-employee-name="Fadumo Xasan" aria-expanded="false"><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
                     <tr>
-                        <td><div class="ranking-employee-cell"><strong>Mahad Axmed</strong><span>Togdheer Branch</span></div></td>
+                        <td><div class="ranking-employee-cell"><strong>Mahad Axmed</strong><span>Idaacada Branch</span></div></td>
                         <td>EMP-0003</td>
                         <td>Operations</td>
                         <td>Operations Supervisor</td>
@@ -1211,7 +1200,7 @@ include '../../includes/header_sidebar.php';
                         <td><button type="button" class="ranking-action-trigger" data-ranking-action-toggle data-employee-name="Mahad Axmed" aria-expanded="false"><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
                     <tr>
-                        <td><div class="ranking-employee-cell"><strong>Sahra Maxamed</strong><span>Calaamada Branch</span></div></td>
+                        <td><div class="ranking-employee-cell"><strong>Sahra Maxamed</strong><span>Idaacada Branch</span></div></td>
                         <td>EMP-0004</td>
                         <td>Marketing</td>
                         <td>Marketing Coordinator</td>
@@ -1226,7 +1215,7 @@ include '../../includes/header_sidebar.php';
                         <td><button type="button" class="ranking-action-trigger" data-ranking-action-toggle data-employee-name="Sahra Maxamed" aria-expanded="false"><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
                     <tr>
-                        <td><div class="ranking-employee-cell"><strong>Hodan Ali</strong><span>Masalaha Branch</span></div></td>
+                        <td><div class="ranking-employee-cell"><strong>Hodan Ali</strong><span>Idaacada Branch</span></div></td>
                         <td>EMP-0005</td>
                         <td>Administration</td>
                         <td>Administration Officer</td>
@@ -1241,7 +1230,7 @@ include '../../includes/header_sidebar.php';
                         <td><button type="button" class="ranking-action-trigger" data-ranking-action-toggle data-employee-name="Hodan Ali" aria-expanded="false"><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
                     <tr>
-                        <td><div class="ranking-employee-cell"><strong>Mustafe Cabdi</strong><span>Jigjiga Yar Branch</span></div></td>
+                        <td><div class="ranking-employee-cell"><strong>Mustafe Cabdi</strong><span>Idaacada Branch</span></div></td>
                         <td>EMP-0006</td>
                         <td>Information Technology</td>
                         <td>Systems Support Engineer</td>
@@ -1256,7 +1245,7 @@ include '../../includes/header_sidebar.php';
                         <td><button type="button" class="ranking-action-trigger" data-ranking-action-toggle data-employee-name="Mustafe Cabdi" aria-expanded="false"><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
                     <tr>
-                        <td><div class="ranking-employee-cell"><strong>Roda Jama</strong><span>Xero Awr Branch</span></div></td>
+                        <td><div class="ranking-employee-cell"><strong>Roda Jama</strong><span>Idaacada Branch</span></div></td>
                         <td>EMP-0007</td>
                         <td>Finance</td>
                         <td>Financial Analyst</td>
@@ -1286,7 +1275,7 @@ include '../../includes/header_sidebar.php';
                         <td><button type="button" class="ranking-action-trigger" data-ranking-action-toggle data-employee-name="Amina Yusuf" aria-expanded="false"><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
                     <tr>
-                        <td><div class="ranking-employee-cell"><strong>Ahmed Jama</strong><span>Calaamada Branch</span></div></td>
+                        <td><div class="ranking-employee-cell"><strong>Ahmed Jama</strong><span>Idaacada Branch</span></div></td>
                         <td>EMP-0009</td>
                         <td>Marketing</td>
                         <td>Marketing Associate</td>
@@ -1301,7 +1290,7 @@ include '../../includes/header_sidebar.php';
                         <td><button type="button" class="ranking-action-trigger" data-ranking-action-toggle data-employee-name="Ahmed Jama" aria-expanded="false"><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
                     <tr>
-                        <td><div class="ranking-employee-cell"><strong>Mohamed Yusuf</strong><span>Masalaha Branch</span></div></td>
+                        <td><div class="ranking-employee-cell"><strong>Mohamed Yusuf</strong><span>Idaacada Branch</span></div></td>
                         <td>EMP-0010</td>
                         <td>Administration</td>
                         <td>Records Coordinator</td>

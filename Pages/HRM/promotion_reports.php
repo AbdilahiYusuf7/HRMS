@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $pageTitle = "Reports & Insights";
 $activePage = "promotion-reports";
 $assetPath = "../../assets";
@@ -529,26 +529,26 @@ include '../../includes/header_sidebar.php';
 
     <section class="promotion-reports-chart-panel">
         <div class="promotion-reports-chart-header">
-            <h2>Training Participation by Branch</h2>
-            <p>Promotion-readiness training participation across branches.</p>
+            <h2>Training Participation by Department</h2>
+            <p>Promotion-readiness training participation across departments.</p>
         </div>
 
-        <svg class="promotion-reports-chart-svg" viewBox="0 0 620 440" role="img" aria-label="Training participation by branch pie chart">
+        <svg class="promotion-reports-chart-svg" viewBox="0 0 620 440" role="img" aria-label="Training participation by department pie chart">
             <g transform="translate(310 206)">
-                <path class="promotion-reports-pie-slice" d="M0 0 L0 -150 A150 150 0 0 1 149.2 15.7 Z" fill="#6366f1" data-chart-title="Idaacada Branch" data-chart-value="26% training participation"></path>
-                <path class="promotion-reports-pie-slice" d="M0 0 L149.2 15.7 A150 150 0 0 1 39.1 144.9 Z" fill="#10b981" data-chart-title="Xero Awr Branch" data-chart-value="18% training participation"></path>
-                <path class="promotion-reports-pie-slice" d="M0 0 L39.1 144.9 A150 150 0 0 1 -121.4 88.2 Z" fill="#0ea5e9" data-chart-title="Calaamada Branch" data-chart-value="21% training participation"></path>
-                <path class="promotion-reports-pie-slice" d="M0 0 L-121.4 88.2 A150 150 0 0 1 -142.7 -46.4 Z" fill="#f59e0b" data-chart-title="Masalaha Branch" data-chart-value="15% training participation"></path>
-                <path class="promotion-reports-pie-slice" d="M0 0 L-142.7 -46.4 A150 150 0 0 1 0 -150 Z" fill="#8b5cf6" data-chart-title="Jigjiga Yar Branch" data-chart-value="20% training participation"></path>
+                <path class="promotion-reports-pie-slice" d="M0 0 L0 -150 A150 150 0 0 1 149.2 15.7 Z" fill="#6366f1" data-chart-title="Operations" data-chart-value="26% training participation"></path>
+                <path class="promotion-reports-pie-slice" d="M0 0 L149.2 15.7 A150 150 0 0 1 39.1 144.9 Z" fill="#10b981" data-chart-title="Finance" data-chart-value="18% training participation"></path>
+                <path class="promotion-reports-pie-slice" d="M0 0 L39.1 144.9 A150 150 0 0 1 -121.4 88.2 Z" fill="#0ea5e9" data-chart-title="Human Resource" data-chart-value="21% training participation"></path>
+                <path class="promotion-reports-pie-slice" d="M0 0 L-121.4 88.2 A150 150 0 0 1 -142.7 -46.4 Z" fill="#f59e0b" data-chart-title="Marketing" data-chart-value="15% training participation"></path>
+                <path class="promotion-reports-pie-slice" d="M0 0 L-142.7 -46.4 A150 150 0 0 1 0 -150 Z" fill="#8b5cf6" data-chart-title="Information Technology" data-chart-value="20% training participation"></path>
             </g>
         </svg>
 
         <div class="promotion-reports-chart-legend">
-            <span><i class="promotion-reports-legend-idaacada"></i>Idaacada Branch</span>
-            <span><i class="promotion-reports-legend-xero"></i>Xero Awr Branch</span>
-            <span><i class="promotion-reports-legend-calaamada"></i>Calaamada Branch</span>
-            <span><i class="promotion-reports-legend-masalaha"></i>Masalaha Branch</span>
-            <span><i class="promotion-reports-legend-jigjiga"></i>Jigjiga Yar Branch</span>
+            <span><i class="promotion-reports-legend-idaacada"></i>Operations</span>
+            <span><i class="promotion-reports-legend-xero"></i>Finance</span>
+            <span><i class="promotion-reports-legend-calaamada"></i>Human Resource</span>
+            <span><i class="promotion-reports-legend-masalaha"></i>Marketing</span>
+            <span><i class="promotion-reports-legend-jigjiga"></i>Information Technology</span>
         </div>
     </section>
 </div>

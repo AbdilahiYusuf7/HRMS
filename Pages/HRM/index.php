@@ -3,6 +3,7 @@ $pageTitle = "HRM Analytics Dashboard";
 $activePage = "hrm-dashboard";
 $assetPath = "../../assets";
 $menuPath = __DIR__ . "/menu.php";
+require_once __DIR__ . '/../../includes/hrm_config.php';
 include '../../includes/header_sidebar.php';
 ?>
 
@@ -10,7 +11,7 @@ include '../../includes/header_sidebar.php';
 
 <style>
     body {
-        zoom: 85%;
+        zoom: 75%;
     }
 
     .hrm-suite {
@@ -333,13 +334,10 @@ include '../../includes/header_sidebar.php';
                 </div>
                 <div>
                     <h1>HR Analytics & Organizational Intelligence Suite</h1>
-                    <p>Executive HRM dashboard for Hargeisa branch operations.</p>
+                    <p>Executive HRM dashboard for <?php echo htmlspecialchars(hrmBranchName()); ?> operations.</p>
                 </div>
             </div>
             <div class="suite-filters">
-                <select id="filter-branch" class="suite-select">
-                    <option value="ALL">All Branches</option>
-                </select>
                 <select id="filter-dept" class="suite-select">
                     <option value="ALL">All Departments</option>
                 </select>
@@ -348,11 +346,11 @@ include '../../includes/header_sidebar.php';
         </div>
 
         <div class="suite-tabs" id="suite-tabs">
-            <button type="button" class="suite-tab active" data-tab="overview"><span class="material-symbols-rounded">dashboard</span>Overview & Branch</button>
+            <button type="button" class="suite-tab active" data-tab="overview"><span class="material-symbols-rounded">dashboard</span>Overview</button>
             <button type="button" class="suite-tab" data-tab="departments"><span class="material-symbols-rounded">domain</span>Departments Intel</button>
             <button type="button" class="suite-tab" data-tab="attendance"><span class="material-symbols-rounded">schedule</span>Attendance</button>
             <button type="button" class="suite-tab" data-tab="performance"><span class="material-symbols-rounded">military_tech</span>Performance</button>
-            <button type="button" class="suite-tab" data-tab="financial"><span class="material-symbols-rounded">payments</span>Financial</button>
+            <button type="button" class="suite-tab" data-tab="financial"><span class="material-symbols-rounded">payments</span>Payroll</button>
             <button type="button" class="suite-tab" data-tab="training"><span class="material-symbols-rounded">school</span>Training</button>
             <button type="button" class="suite-tab" data-tab="leaves"><span class="material-symbols-rounded">event_available</span>Leaves</button>
             <button type="button" class="suite-tab" data-tab="retirement"><span class="material-symbols-rounded">group_remove</span>Retirement</button>
@@ -363,9 +361,9 @@ include '../../includes/header_sidebar.php';
     <section id="tab-overview" class="tab-content active">
         <div class="summary-grid" id="overview-summary"></div>
         <div class="chart-grid">
-            <div class="suite-card chart-card"><h3>Branch Headcount Index</h3><p>Line comparison across Hargeisa locations.</p><div class="chart-holder"><canvas id="ovChart1"></canvas></div></div>
-            <div class="suite-card chart-card"><h3>Branch Performance Profile</h3><p>Average employee performance by branch.</p><div class="chart-holder"><canvas id="ovChart2"></canvas></div></div>
-            <div class="suite-card chart-card"><h3>Branch Payroll Footprint</h3><p>Payroll consumption by location.</p><div class="chart-holder"><canvas id="ovChart3"></canvas></div></div>
+            <div class="suite-card chart-card"><h3>Department Headcount Index</h3><p>Headcount distribution across departments.</p><div class="chart-holder"><canvas id="ovChart1"></canvas></div></div>
+            <div class="suite-card chart-card"><h3>Department Performance Profile</h3><p>Average employee performance by department.</p><div class="chart-holder"><canvas id="ovChart2"></canvas></div></div>
+            <div class="suite-card chart-card"><h3>Department Payroll Footprint</h3><p>Payroll consumption by department.</p><div class="chart-holder"><canvas id="ovChart3"></canvas></div></div>
             <div class="suite-card chart-card"><h3>Gender Distribution</h3><p>Employee gender split.</p><div class="chart-holder"><canvas id="ovChart4"></canvas></div></div>
             <div class="suite-card chart-card wide"><h3>Active Workforce Growth</h3><p>Projected workforce movement.</p><div class="chart-holder"><canvas id="ovChart5"></canvas></div></div>
         </div>
@@ -387,7 +385,7 @@ include '../../includes/header_sidebar.php';
             <div class="suite-card list-card wide"><h3>Employees With Highest Attendance Deductions</h3><p>Financial effect of attendance exceptions.</p><div id="att-deduction-list"></div></div>
             <div class="suite-card list-card"><h3>Top Attendance Employees</h3><p>Best attendance discipline.</p><div id="att-top-list"></div></div>
             <div class="suite-card chart-card"><h3>Attendance Exceptions Mix</h3><p>Out of window, absent, late, not registered.</p><div class="chart-holder"><canvas id="attChart1"></canvas></div></div>
-            <div class="suite-card chart-card"><h3>Deductions by Branch</h3><p>Total attendance deductions by location.</p><div class="chart-holder"><canvas id="attChart2"></canvas></div></div>
+            <div class="suite-card chart-card"><h3>Deductions by Department</h3><p>Total attendance deductions by department.</p><div class="chart-holder"><canvas id="attChart2"></canvas></div></div>
             <div class="suite-card chart-card"><h3>Attendance Trend</h3><p>Weekly attendance rate movement.</p><div class="chart-holder"><canvas id="attChart3"></canvas></div></div>
         </div>
     </section>
@@ -405,11 +403,11 @@ include '../../includes/header_sidebar.php';
     <section id="tab-financial" class="tab-content">
         <div class="summary-grid" id="financial-summary"></div>
         <div class="chart-grid">
-            <div class="suite-card chart-card wide"><h3>Revenue, Income, Expenses</h3><p>Monthly financial trend.</p><div class="chart-holder"><canvas id="finChart1"></canvas></div></div>
-            <div class="suite-card chart-card"><h3>Payroll by Branch</h3><p>Branch salary footprint.</p><div class="chart-holder"><canvas id="finChart2"></canvas></div></div>
-            <div class="suite-card chart-card"><h3>Salary Consumption by Role</h3><p>Payroll by role.</p><div class="chart-holder"><canvas id="finChart3"></canvas></div></div>
-            <div class="suite-card list-card"><h3>Highest Salary Employees</h3><p>Top salary records.</p><div id="salary-high-list"></div></div>
-            <div class="suite-card list-card"><h3>Lowest Salary Employees</h3><p>Lowest salary records.</p><div id="salary-low-list"></div></div>
+            <div class="suite-card chart-card wide"><h3>Payroll & Deduction Trend</h3><p>Monthly gross payroll, deductions, and net pay movement.</p><div class="chart-holder"><canvas id="finChart1"></canvas></div></div>
+            <div class="suite-card chart-card"><h3>Gross Payroll by Department</h3><p>Department salary footprint before deductions.</p><div class="chart-holder"><canvas id="finChart2"></canvas></div></div>
+            <div class="suite-card chart-card"><h3>Deductions by Department</h3><p>Attendance and payroll deductions by department.</p><div class="chart-holder"><canvas id="finChart3"></canvas></div></div>
+            <div class="suite-card list-card"><h3>Highest Payroll Deductions</h3><p>Employees with the largest deduction totals.</p><div id="salary-high-list"></div></div>
+            <div class="suite-card list-card"><h3>Net Pay Summary</h3><p>Gross salary after deductions.</p><div id="salary-low-list"></div></div>
         </div>
     </section>
 
@@ -448,7 +446,7 @@ include '../../includes/header_sidebar.php';
         <div class="chart-grid">
             <div class="suite-card chart-card"><h3>Male vs Female Employees</h3><p>Workforce gender split.</p><div class="chart-holder"><canvas id="empChart1"></canvas></div></div>
             <div class="suite-card chart-card"><h3>Tenure Brackets</h3><p>Workforce service age.</p><div class="chart-holder"><canvas id="empChart2"></canvas></div></div>
-            <div class="suite-card chart-card"><h3>Workforce by Branch</h3><p>Employee density by branch.</p><div class="chart-holder"><canvas id="empChart3"></canvas></div></div>
+            <div class="suite-card chart-card"><h3>Workforce by Department</h3><p>Employee density by department.</p><div class="chart-holder"><canvas id="empChart3"></canvas></div></div>
             <div class="suite-card list-card"><h3>Newly Joined Employees</h3><p>Newest employees.</p><div id="emp-new-list"></div></div>
             <div class="suite-card list-card"><h3>Longest Time Employees</h3><p>Most senior employees.</p><div id="emp-long-list"></div></div>
             <div class="suite-card list-card"><h3>At Risk Employees</h3><p>Risk from performance, training, attendance.</p><div id="emp-risk-list"></div></div>
@@ -471,29 +469,23 @@ include '../../includes/header_sidebar.php';
     const chartRefs = {};
 
     const employees = [
-        {id:"EMP-001", name:"Amina Hassan", gender:"Female", branch:"Idaacada", department:"Operations", role:"Supervisor", salary:4200, attendance:98, late:1, absent:0, out:1, notRegistered:0, deductions:25, perfScore:96, improvementRate:9, trainings:8, pendingTraining:0, certificates:6, usedLeaves:3, remainingLeaves:17, leaveRequests:4, rejectedLeaves:0, age:34, tenureYears:12, retirementSchedule:"None"},
-        {id:"EMP-002", name:"Mohamed Ali", gender:"Male", branch:"Jigjiga Yar", department:"Finance", role:"Manager", salary:5200, attendance:91, late:4, absent:1, out:2, notRegistered:0, deductions:160, perfScore:88, improvementRate:4, trainings:6, pendingTraining:1, certificates:4, usedLeaves:5, remainingLeaves:15, leaveRequests:7, rejectedLeaves:1, age:46, tenureYears:14, retirementSchedule:"None"},
-        {id:"EMP-003", name:"Fadumo Yusuf", gender:"Female", branch:"Calaamadaha", department:"HR", role:"Officer", salary:3100, attendance:94, late:2, absent:1, out:1, notRegistered:1, deductions:120, perfScore:91, improvementRate:11, trainings:7, pendingTraining:0, certificates:5, usedLeaves:6, remainingLeaves:14, leaveRequests:8, rejectedLeaves:0, age:39, tenureYears:10, retirementSchedule:"None"},
-        {id:"EMP-004", name:"Abdirahman Jama", gender:"Male", branch:"150 Street", department:"Security", role:"Inspector", salary:2800, attendance:84, late:8, absent:3, out:5, notRegistered:2, deductions:510, perfScore:69, improvementRate:-3, trainings:4, pendingTraining:3, certificates:2, usedLeaves:2, remainingLeaves:18, leaveRequests:3, rejectedLeaves:1, age:58, tenureYears:23, retirementSchedule:"This Month"},
-        {id:"EMP-005", name:"Khadar Omar", gender:"Male", branch:"150 Street", department:"Security", role:"Senior Officer", salary:3400, attendance:96, late:1, absent:1, out:0, notRegistered:0, deductions:65, perfScore:90, improvementRate:7, trainings:7, pendingTraining:1, certificates:5, usedLeaves:4, remainingLeaves:16, leaveRequests:5, rejectedLeaves:0, age:37, tenureYears:8, retirementSchedule:"None"},
-        {id:"EMP-006", name:"Sahra Muse", gender:"Female", branch:"Jigjiga Yar", department:"Training", role:"Coordinator", salary:3600, attendance:97, late:1, absent:0, out:1, notRegistered:0, deductions:25, perfScore:94, improvementRate:10, trainings:10, pendingTraining:0, certificates:8, usedLeaves:4, remainingLeaves:16, leaveRequests:5, rejectedLeaves:0, age:33, tenureYears:6, retirementSchedule:"None"},
-        {id:"EMP-007", name:"Hassan Warsame", gender:"Male", branch:"Jigjiga Yar", department:"Operations", role:"Controller", salary:4500, attendance:89, late:5, absent:2, out:3, notRegistered:1, deductions:300, perfScore:78, improvementRate:2, trainings:5, pendingTraining:2, certificates:3, usedLeaves:8, remainingLeaves:12, leaveRequests:10, rejectedLeaves:1, age:55, tenureYears:17, retirementSchedule:"This Year"},
-        {id:"EMP-008", name:"Nimco Abdi", gender:"Female", branch:"Jigjiga Yar", department:"Operations", role:"Controller", salary:3900, attendance:95, late:2, absent:0, out:1, notRegistered:0, deductions:35, perfScore:89, improvementRate:8, trainings:7, pendingTraining:1, certificates:4, usedLeaves:3, remainingLeaves:17, leaveRequests:4, rejectedLeaves:0, age:31, tenureYears:4, retirementSchedule:"None"},
-        {id:"EMP-009", name:"Liban Farah", gender:"Male", branch:"Calaamadaha", department:"Maintenance", role:"Engineer", salary:4100, attendance:86, late:7, absent:3, out:4, notRegistered:1, deductions:455, perfScore:73, improvementRate:-1, trainings:3, pendingTraining:4, certificates:2, usedLeaves:7, remainingLeaves:13, leaveRequests:9, rejectedLeaves:2, age:57, tenureYears:24, retirementSchedule:"This Year"},
-        {id:"EMP-010", name:"Muna Ahmed", gender:"Female", branch:"Calaamadaha", department:"Maintenance", role:"Engineer", salary:3700, attendance:93, late:3, absent:1, out:2, notRegistered:0, deductions:145, perfScore:86, improvementRate:6, trainings:6, pendingTraining:1, certificates:4, usedLeaves:4, remainingLeaves:16, leaveRequests:6, rejectedLeaves:1, age:35, tenureYears:7, retirementSchedule:"None"},
-        {id:"EMP-011", name:"Ismail Noor", gender:"Male", branch:"31 May", department:"Finance", role:"Accountant", salary:3300, attendance:92, late:4, absent:1, out:2, notRegistered:0, deductions:155, perfScore:82, improvementRate:5, trainings:5, pendingTraining:2, certificates:3, usedLeaves:6, remainingLeaves:14, leaveRequests:7, rejectedLeaves:1, age:42, tenureYears:11, retirementSchedule:"None"},
-        {id:"EMP-012", name:"Hibo Said", gender:"Female", branch:"31 May", department:"HR", role:"Assistant", salary:2600, attendance:88, late:5, absent:2, out:3, notRegistered:2, deductions:380, perfScore:76, improvementRate:3, trainings:4, pendingTraining:3, certificates:2, usedLeaves:9, remainingLeaves:11, leaveRequests:12, rejectedLeaves:2, age:29, tenureYears:1, retirementSchedule:"None"},
-        {id:"EMP-013", name:"Yasin Ahmed", gender:"Male", branch:"New Hargeisa", department:"Training", role:"Instructor", salary:3500, attendance:99, late:0, absent:0, out:0, notRegistered:0, deductions:0, perfScore:95, improvementRate:12, trainings:9, pendingTraining:0, certificates:7, usedLeaves:1, remainingLeaves:19, leaveRequests:2, rejectedLeaves:0, age:36, tenureYears:9, retirementSchedule:"None"},
-        {id:"EMP-014", name:"Rahma Osman", gender:"Female", branch:"New Hargeisa", department:"Customer Service", role:"Officer", salary:2900, attendance:90, late:4, absent:2, out:2, notRegistered:1, deductions:260, perfScore:80, improvementRate:4, trainings:5, pendingTraining:2, certificates:3, usedLeaves:7, remainingLeaves:13, leaveRequests:9, rejectedLeaves:1, age:28, tenureYears:1, retirementSchedule:"None"},
-        {id:"EMP-015", name:"Omar Barre", gender:"Male", branch:"Ahmed Dhagah", department:"Customer Service", role:"Lead", salary:3600, attendance:93, late:2, absent:1, out:1, notRegistered:1, deductions:145, perfScore:85, improvementRate:6, trainings:6, pendingTraining:1, certificates:4, usedLeaves:5, remainingLeaves:15, leaveRequests:6, rejectedLeaves:0, age:49, tenureYears:15, retirementSchedule:"None"},
-        {id:"EMP-016", name:"Deeqa Ibrahim", gender:"Female", branch:"Ahmed Dhagah", department:"Finance", role:"Analyst", salary:3800, attendance:96, late:1, absent:0, out:1, notRegistered:0, deductions:30, perfScore:92, improvementRate:8, trainings:8, pendingTraining:0, certificates:5, usedLeaves:4, remainingLeaves:16, leaveRequests:5, rejectedLeaves:0, age:32, tenureYears:5, retirementSchedule:"None"}
+        {id:"EMP-001", name:"Amina Hassan", gender:"Female", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Operations", role:"Supervisor", salary:4200, attendance:98, late:1, absent:0, out:1, notRegistered:0, deductions:25, perfScore:96, improvementRate:9, trainings:8, pendingTraining:0, certificates:6, usedLeaves:3, remainingLeaves:17, leaveRequests:4, rejectedLeaves:0, age:34, tenureYears:12, retirementSchedule:"None"},
+        {id:"EMP-002", name:"Mohamed Ali", gender:"Male", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Finance", role:"Manager", salary:5200, attendance:91, late:4, absent:1, out:2, notRegistered:0, deductions:160, perfScore:88, improvementRate:4, trainings:6, pendingTraining:1, certificates:4, usedLeaves:5, remainingLeaves:15, leaveRequests:7, rejectedLeaves:1, age:46, tenureYears:14, retirementSchedule:"None"},
+        {id:"EMP-003", name:"Fadumo Yusuf", gender:"Female", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"HR", role:"Officer", salary:3100, attendance:94, late:2, absent:1, out:1, notRegistered:1, deductions:120, perfScore:91, improvementRate:11, trainings:7, pendingTraining:0, certificates:5, usedLeaves:6, remainingLeaves:14, leaveRequests:8, rejectedLeaves:0, age:39, tenureYears:10, retirementSchedule:"None"},
+        {id:"EMP-004", name:"Abdirahman Jama", gender:"Male", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Security", role:"Inspector", salary:2800, attendance:84, late:8, absent:3, out:5, notRegistered:2, deductions:510, perfScore:69, improvementRate:-3, trainings:4, pendingTraining:3, certificates:2, usedLeaves:2, remainingLeaves:18, leaveRequests:3, rejectedLeaves:1, age:58, tenureYears:23, retirementSchedule:"This Month"},
+        {id:"EMP-005", name:"Khadar Omar", gender:"Male", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Security", role:"Senior Officer", salary:3400, attendance:96, late:1, absent:1, out:0, notRegistered:0, deductions:65, perfScore:90, improvementRate:7, trainings:7, pendingTraining:1, certificates:5, usedLeaves:4, remainingLeaves:16, leaveRequests:5, rejectedLeaves:0, age:37, tenureYears:8, retirementSchedule:"None"},
+        {id:"EMP-006", name:"Sahra Muse", gender:"Female", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Training", role:"Coordinator", salary:3600, attendance:97, late:1, absent:0, out:1, notRegistered:0, deductions:25, perfScore:94, improvementRate:10, trainings:10, pendingTraining:0, certificates:8, usedLeaves:4, remainingLeaves:16, leaveRequests:5, rejectedLeaves:0, age:33, tenureYears:6, retirementSchedule:"None"},
+        {id:"EMP-007", name:"Hassan Warsame", gender:"Male", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Operations", role:"Controller", salary:4500, attendance:89, late:5, absent:2, out:3, notRegistered:1, deductions:300, perfScore:78, improvementRate:2, trainings:5, pendingTraining:2, certificates:3, usedLeaves:8, remainingLeaves:12, leaveRequests:10, rejectedLeaves:1, age:55, tenureYears:17, retirementSchedule:"This Year"},
+        {id:"EMP-008", name:"Nimco Abdi", gender:"Female", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Operations", role:"Controller", salary:3900, attendance:95, late:2, absent:0, out:1, notRegistered:0, deductions:35, perfScore:89, improvementRate:8, trainings:7, pendingTraining:1, certificates:4, usedLeaves:3, remainingLeaves:17, leaveRequests:4, rejectedLeaves:0, age:31, tenureYears:4, retirementSchedule:"None"},
+        {id:"EMP-009", name:"Liban Farah", gender:"Male", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Maintenance", role:"Engineer", salary:4100, attendance:86, late:7, absent:3, out:4, notRegistered:1, deductions:455, perfScore:73, improvementRate:-1, trainings:3, pendingTraining:4, certificates:2, usedLeaves:7, remainingLeaves:13, leaveRequests:9, rejectedLeaves:2, age:57, tenureYears:24, retirementSchedule:"This Year"},
+        {id:"EMP-010", name:"Muna Ahmed", gender:"Female", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Maintenance", role:"Engineer", salary:3700, attendance:93, late:3, absent:1, out:2, notRegistered:0, deductions:145, perfScore:86, improvementRate:6, trainings:6, pendingTraining:1, certificates:4, usedLeaves:4, remainingLeaves:16, leaveRequests:6, rejectedLeaves:1, age:35, tenureYears:7, retirementSchedule:"None"},
+        {id:"EMP-011", name:"Ismail Noor", gender:"Male", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Finance", role:"Accountant", salary:3300, attendance:92, late:4, absent:1, out:2, notRegistered:0, deductions:155, perfScore:82, improvementRate:5, trainings:5, pendingTraining:2, certificates:3, usedLeaves:6, remainingLeaves:14, leaveRequests:7, rejectedLeaves:1, age:42, tenureYears:11, retirementSchedule:"None"},
+        {id:"EMP-012", name:"Hibo Said", gender:"Female", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"HR", role:"Assistant", salary:2600, attendance:88, late:5, absent:2, out:3, notRegistered:2, deductions:380, perfScore:76, improvementRate:3, trainings:4, pendingTraining:3, certificates:2, usedLeaves:9, remainingLeaves:11, leaveRequests:12, rejectedLeaves:2, age:29, tenureYears:1, retirementSchedule:"None"},
+        {id:"EMP-013", name:"Yasin Ahmed", gender:"Male", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Training", role:"Instructor", salary:3500, attendance:99, late:0, absent:0, out:0, notRegistered:0, deductions:0, perfScore:95, improvementRate:12, trainings:9, pendingTraining:0, certificates:7, usedLeaves:1, remainingLeaves:19, leaveRequests:2, rejectedLeaves:0, age:36, tenureYears:9, retirementSchedule:"None"},
+        {id:"EMP-014", name:"Rahma Osman", gender:"Female", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Customer Service", role:"Officer", salary:2900, attendance:90, late:4, absent:2, out:2, notRegistered:1, deductions:260, perfScore:80, improvementRate:4, trainings:5, pendingTraining:2, certificates:3, usedLeaves:7, remainingLeaves:13, leaveRequests:9, rejectedLeaves:1, age:28, tenureYears:1, retirementSchedule:"None"},
+        {id:"EMP-015", name:"Omar Barre", gender:"Male", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Customer Service", role:"Lead", salary:3600, attendance:93, late:2, absent:1, out:1, notRegistered:1, deductions:145, perfScore:85, improvementRate:6, trainings:6, pendingTraining:1, certificates:4, usedLeaves:5, remainingLeaves:15, leaveRequests:6, rejectedLeaves:0, age:49, tenureYears:15, retirementSchedule:"None"},
+        {id:"EMP-016", name:"Deeqa Ibrahim", gender:"Female", branch:<?php echo json_encode(hrmBranchName()); ?>, department:"Finance", role:"Analyst", salary:3800, attendance:96, late:1, absent:0, out:1, notRegistered:0, deductions:30, perfScore:92, improvementRate:8, trainings:8, pendingTraining:0, certificates:5, usedLeaves:4, remainingLeaves:16, leaveRequests:5, rejectedLeaves:0, age:32, tenureYears:5, retirementSchedule:"None"}
     ];
-
-    const financeTrend = {
-        revenue: [98000, 104000, 110000, 124000, 132000, 141000, 150000, 158000],
-        income: [72000, 76000, 81000, 90000, 98000, 102000, 110000, 116000],
-        expenses: [52000, 54000, 57000, 62000, 66000, 69000, 72000, 76000]
-    };
 
     function money(value) {
         return "$" + Math.round(value).toLocaleString();
@@ -516,9 +508,8 @@ include '../../includes/header_sidebar.php';
     }
 
     function filteredData() {
-        const branch = document.getElementById("filter-branch")?.value || "ALL";
         const dept = document.getElementById("filter-dept")?.value || "ALL";
-        return employees.filter(emp => (branch === "ALL" || emp.branch === branch) && (dept === "ALL" || emp.department === dept));
+        return employees.filter(emp => dept === "ALL" || emp.department === dept);
     }
 
     function riskScore(emp) {
@@ -543,18 +534,32 @@ include '../../includes/header_sidebar.php';
             return;
         }
 
+        const customOptions = config.options || {};
+        const customPlugins = customOptions.plugins || {};
+        const tooltipOptions = typeof window.hrmChartTooltipOptions === "function"
+            ? window.hrmChartTooltipOptions(customPlugins.tooltip || {})
+            : {
+                backgroundColor: "#0f172a",
+                titleColor: "#ffffff",
+                bodyColor: "rgba(255, 255, 255, 0.72)",
+                padding: 12,
+                cornerRadius: 8
+            };
+
         chartRefs[id] = new Chart(canvas, {
             ...config,
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                ...customOptions,
                 plugins: {
-                    legend: { labels: { usePointStyle: true, boxWidth: 8, font: { weight: "700" } } },
-                    tooltip: { backgroundColor: "rgba(15, 23, 42, 0.95)", padding: 10, cornerRadius: 8 }
-                },
-                scales: config.options?.scales || undefined,
-                indexAxis: config.options?.indexAxis,
-                ...config.options
+                    ...customPlugins,
+                    legend: {
+                        labels: { usePointStyle: true, boxWidth: 8, font: { weight: "700" } },
+                        ...(customPlugins.legend || {})
+                    },
+                    tooltip: tooltipOptions
+                }
             }
         });
     }
@@ -569,15 +574,12 @@ include '../../includes/header_sidebar.php';
     }
 
     function populateFilters() {
-        const branchSelect = document.getElementById("filter-branch");
         const deptSelect = document.getElementById("filter-dept");
-        uniq("branch", employees).forEach(branch => branchSelect.insertAdjacentHTML("beforeend", `<option value="${branch}">${branch}</option>`));
         uniq("department", employees).forEach(dept => deptSelect.insertAdjacentHTML("beforeend", `<option value="${dept}">${dept}</option>`));
     }
 
     function renderAll() {
         const data = filteredData();
-        const branchGroups = groups("branch", data);
         const deptGroups = groups("department", data);
         const roleGroups = groups("role", data);
         const totalPayroll = sum(data, "salary");
@@ -585,25 +587,25 @@ include '../../includes/header_sidebar.php';
         renderSummary("overview-summary", [
             { label: "FTE Headcount", value: data.length, icon: "groups" },
             { label: "Active Departments", value: deptGroups.length, icon: "domain", tone: "green" },
-            { label: "Operational Branches", value: branchGroups.length, icon: "apartment", tone: "orange" },
+            { label: "Home Branch", value: <?php echo json_encode(hrmBranchName()); ?>, icon: "apartment", tone: "orange" },
             { label: "Org Risk Score", value: avg(data.map(emp => ({ score: riskScore(emp) })), "score") > 80 ? "High" : "Medium", icon: "shield", tone: "red" }
         ]);
 
-        renderOverview(data, branchGroups);
+        renderOverview(data, deptGroups);
         renderDepartments(data, deptGroups);
-        renderAttendance(data, branchGroups);
+        renderAttendance(data, deptGroups);
         renderPerformance(data, deptGroups);
-        renderFinancial(data, branchGroups, roleGroups, totalPayroll);
+        renderFinancial(data, deptGroups, roleGroups, totalPayroll);
         renderTraining(data, deptGroups);
         renderLeaves(data, deptGroups);
         renderRetirement(data, deptGroups);
-        renderEmployees(data, branchGroups);
+        renderEmployees(data, deptGroups);
     }
 
-    function renderOverview(data, branchGroups) {
-        safeChartRender("ovChart1", { type: "line", data: { labels: branchGroups.map(g => g.name), datasets: [{ label: "Headcount", data: branchGroups.map(g => g.items.length), borderColor: colors.primary, backgroundColor: "rgba(15,76,129,.12)", fill: true, tension: .35 }] } });
-        safeChartRender("ovChart2", { type: "line", data: { labels: branchGroups.map(g => g.name), datasets: [{ label: "Performance", data: branchGroups.map(g => avg(g.items, "perfScore")), borderColor: colors.success, backgroundColor: "rgba(16,185,129,.12)", fill: true, tension: .35 }] } });
-        safeChartRender("ovChart3", { type: "doughnut", data: { labels: branchGroups.map(g => g.name), datasets: [{ data: branchGroups.map(g => sum(g.items, "salary")), backgroundColor: palette }] } });
+    function renderOverview(data, deptGroups) {
+        safeChartRender("ovChart1", { type: "line", data: { labels: deptGroups.map(g => g.name), datasets: [{ label: "Headcount", data: deptGroups.map(g => g.items.length), borderColor: colors.primary, backgroundColor: "rgba(15,76,129,.12)", fill: true, tension: .35 }] } });
+        safeChartRender("ovChart2", { type: "line", data: { labels: deptGroups.map(g => g.name), datasets: [{ label: "Performance", data: deptGroups.map(g => avg(g.items, "perfScore")), borderColor: colors.success, backgroundColor: "rgba(16,185,129,.12)", fill: true, tension: .35 }] } });
+        safeChartRender("ovChart3", { type: "doughnut", data: { labels: deptGroups.map(g => g.name), datasets: [{ data: deptGroups.map(g => sum(g.items, "salary")), backgroundColor: palette }] } });
         safeChartRender("ovChart4", { type: "pie", data: { labels: ["Male", "Female"], datasets: [{ data: [data.filter(e => e.gender === "Male").length, data.filter(e => e.gender === "Female").length], backgroundColor: [colors.primary, colors.secondary] }] } });
         safeChartRender("ovChart5", { type: "line", data: { labels: months, datasets: [{ label: "Active Workforce Growth", data: [12, 12, 13, 14, 14, 15, 15, data.length], borderColor: colors.primary, backgroundColor: "rgba(77,168,218,.18)", fill: true, tension: .35 }] } });
     }
@@ -625,11 +627,11 @@ include '../../includes/header_sidebar.php';
         safeChartRender("deptChart5", { type: "bar", data: { labels: deptGroups.map(g => g.name), datasets: [{ label: "Late", data: deptGroups.map(g => sum(g.items, "late")), backgroundColor: colors.warning }, { label: "Absent", data: deptGroups.map(g => sum(g.items, "absent")), backgroundColor: colors.danger }, { label: "Out Window", data: deptGroups.map(g => sum(g.items, "out")), backgroundColor: colors.violet }, { label: "Not Registered", data: deptGroups.map(g => sum(g.items, "notRegistered")), backgroundColor: colors.slate }] } });
     }
 
-    function renderAttendance(data, branchGroups) {
-        renderList("att-deduction-list", ["Employee", "Department", "Branch", "Deduction"], [...data].sort((a, b) => b.deductions - a.deductions).slice(0, 8).map(e => `<tr><td>${e.name}</td><td>${e.department}</td><td>${e.branch}</td><td>${money(e.deductions)}</td></tr>`));
+    function renderAttendance(data, deptGroups) {
+        renderList("att-deduction-list", ["Employee", "Department", "Deduction"], [...data].sort((a, b) => b.deductions - a.deductions).slice(0, 8).map(e => `<tr><td>${e.name}</td><td>${e.department}</td><td>${money(e.deductions)}</td></tr>`));
         renderList("att-top-list", ["Employee", "Attendance"], [...data].sort((a, b) => b.attendance - a.attendance).slice(0, 8).map(e => `<tr><td>${e.name}</td><td>${e.attendance}%</td></tr>`));
         safeChartRender("attChart1", { type: "bar", data: { labels: ["Out Window", "Absent", "Late", "Not Registered"], datasets: [{ label: "Events", data: [sum(data, "out"), sum(data, "absent"), sum(data, "late"), sum(data, "notRegistered")], backgroundColor: [colors.violet, colors.danger, colors.warning, colors.slate] }] } });
-        safeChartRender("attChart2", { type: "bar", data: { labels: branchGroups.map(g => g.name), datasets: [{ label: "Deductions", data: branchGroups.map(g => sum(g.items, "deductions")), backgroundColor: colors.danger }] }, options: { indexAxis: "y" } });
+        safeChartRender("attChart2", { type: "bar", data: { labels: deptGroups.map(g => g.name), datasets: [{ label: "Deductions", data: deptGroups.map(g => sum(g.items, "deductions")), backgroundColor: colors.danger }] }, options: { indexAxis: "y" } });
         safeChartRender("attChart3", { type: "line", data: { labels: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"], datasets: [{ label: "Attendance Rate", data: [92, 88, 94, 95, 92, avg(data, "attendance")], borderColor: colors.primary, backgroundColor: "rgba(77,168,218,.18)", fill: true, tension: .4 }] } });
     }
 
@@ -641,18 +643,26 @@ include '../../includes/header_sidebar.php';
         safeChartRender("perfChart2", { type: "scatter", data: { datasets: [{ label: "Employees", data: data.map(e => ({ x: e.attendance, y: e.perfScore })), backgroundColor: colors.primary }] }, options: { scales: { x: { title: { display: true, text: "Attendance" } }, y: { title: { display: true, text: "Performance" } } } } });
     }
 
-    function renderFinancial(data, branchGroups, roleGroups, totalPayroll) {
+    function renderFinancial(data, deptGroups, roleGroups, totalPayroll) {
+        const totalDeductions = sum(data, "deductions");
+        const netPayroll = totalPayroll - totalDeductions;
+        const payrollTrend = {
+            gross: months.map((_, index) => Math.round(totalPayroll * (0.88 + index * 0.015))),
+            deductions: months.map((_, index) => Math.round(totalDeductions * (0.85 + index * 0.018))),
+            net: months.map((_, index) => Math.round(netPayroll * (0.87 + index * 0.016)))
+        };
+
         renderSummary("financial-summary", [
-            { label: "Total Revenue", value: money(financeTrend.revenue.at(-1)), icon: "trending_up" },
-            { label: "Total Income", value: money(financeTrend.income.at(-1)), icon: "account_balance", tone: "green" },
-            { label: "Total Expenses", value: money(financeTrend.expenses.at(-1)), icon: "receipt_long", tone: "orange" },
-            { label: "Total Payroll", value: money(totalPayroll), icon: "payments", tone: "red" }
+            { label: "Gross Payroll", value: money(totalPayroll), icon: "payments" },
+            { label: "Total Deductions", value: money(totalDeductions), icon: "receipt_long", tone: "orange" },
+            { label: "Net Payroll", value: money(netPayroll), icon: "account_balance_wallet", tone: "green" },
+            { label: "Avg Gross Salary", value: money(avg(data, "salary")), icon: "price_check", tone: "red" }
         ]);
-        safeChartRender("finChart1", { type: "line", data: { labels: months, datasets: [{ label: "Revenue", data: financeTrend.revenue, borderColor: colors.primary, tension: .35 }, { label: "Income", data: financeTrend.income, borderColor: colors.success, tension: .35 }, { label: "Expenses", data: financeTrend.expenses, borderColor: colors.danger, tension: .35 }] } });
-        safeChartRender("finChart2", { type: "bar", data: { labels: branchGroups.map(g => g.name), datasets: [{ label: "Payroll", data: branchGroups.map(g => sum(g.items, "salary")), backgroundColor: colors.primary }] } });
-        safeChartRender("finChart3", { type: "doughnut", data: { labels: roleGroups.map(g => g.name), datasets: [{ data: roleGroups.map(g => sum(g.items, "salary")), backgroundColor: palette }] } });
-        renderList("salary-high-list", ["Employee", "Salary"], [...data].sort((a, b) => b.salary - a.salary).slice(0, 6).map(e => `<tr><td>${e.name}</td><td>${money(e.salary)}</td></tr>`));
-        renderList("salary-low-list", ["Employee", "Salary"], [...data].sort((a, b) => a.salary - b.salary).slice(0, 6).map(e => `<tr><td>${e.name}</td><td>${money(e.salary)}</td></tr>`));
+        safeChartRender("finChart1", { type: "line", data: { labels: months, datasets: [{ label: "Gross Payroll", data: payrollTrend.gross, borderColor: colors.primary, tension: .35 }, { label: "Deductions", data: payrollTrend.deductions, borderColor: colors.danger, tension: .35 }, { label: "Net Payroll", data: payrollTrend.net, borderColor: colors.success, tension: .35 }] } });
+        safeChartRender("finChart2", { type: "bar", data: { labels: deptGroups.map(g => g.name), datasets: [{ label: "Gross Payroll", data: deptGroups.map(g => sum(g.items, "salary")), backgroundColor: colors.primary }] } });
+        safeChartRender("finChart3", { type: "bar", data: { labels: deptGroups.map(g => g.name), datasets: [{ label: "Deductions", data: deptGroups.map(g => sum(g.items, "deductions")), backgroundColor: colors.danger }] }, options: { indexAxis: "y" } });
+        renderList("salary-high-list", ["Employee", "Deductions"], [...data].sort((a, b) => b.deductions - a.deductions).slice(0, 6).map(e => `<tr><td>${e.name}</td><td>${money(e.deductions)}</td></tr>`));
+        renderList("salary-low-list", ["Employee", "Net Pay"], [...data].sort((a, b) => (b.salary - b.deductions) - (a.salary - a.deductions)).slice(0, 6).map(e => `<tr><td>${e.name}</td><td>${money(e.salary - e.deductions)}</td></tr>`));
     }
 
     function renderTraining(data, deptGroups) {
@@ -674,7 +684,7 @@ include '../../includes/header_sidebar.php';
 
     function renderRetirement(data, deptGroups) {
         const retirees = data.filter(e => e.retirementSchedule !== "None");
-        const readyNow = retirees.filter(ret => data.some(e => e.department === ret.department && e.branch === ret.branch && e.id !== ret.id && e.age < 55 && e.perfScore >= 80)).length;
+        const readyNow = retirees.filter(ret => data.some(e => e.department === ret.department && e.id !== ret.id && e.age < 55 && e.perfScore >= 80)).length;
         renderSummary("retirement-summary", [
             { label: "This Week", value: retirees.filter(e => e.retirementSchedule === "This Week").length, icon: "today" },
             { label: "This Month", value: retirees.filter(e => e.retirementSchedule === "This Month").length, icon: "calendar_month", tone: "orange" },
@@ -685,12 +695,12 @@ include '../../includes/header_sidebar.php';
         safeChartRender("retChart2", { type: "line", data: { labels: months, datasets: [{ label: "Projected Retirements", data: [0, 1, 1, 2, 2, 3, 3, retirees.length], borderColor: colors.danger, backgroundColor: "rgba(239,68,68,.12)", fill: true, tension: .35 }] } });
         safeChartRender("retChart3", { type: "doughnut", data: { labels: ["Ready Now", "Needs Pipeline"], datasets: [{ data: [readyNow, Math.max(0, retirees.length - readyNow)], backgroundColor: [colors.success, colors.danger] }] } });
         renderList("ret-succession-list", ["Retiring", "Department", "Timeline", "Successor"], retirees.map(ret => {
-            const successor = data.find(e => e.department === ret.department && e.branch === ret.branch && e.id !== ret.id && e.age < 55 && e.perfScore >= 80);
+            const successor = data.find(e => e.department === ret.department && e.id !== ret.id && e.age < 55 && e.perfScore >= 80);
             return `<tr><td>${ret.name}</td><td>${ret.department}</td><td>${ret.retirementSchedule}</td><td>${successor ? successor.name : "External candidate required"}</td></tr>`;
         }));
     }
 
-    function renderEmployees(data, branchGroups) {
+    function renderEmployees(data, deptGroups) {
         const bestMale = [...data].filter(e => e.gender === "Male").sort((a, b) => b.perfScore - a.perfScore)[0];
         const bestFemale = [...data].filter(e => e.gender === "Female").sort((a, b) => b.perfScore - a.perfScore)[0];
         const bestOverall = [...data].sort((a, b) => b.perfScore - a.perfScore)[0];
@@ -703,7 +713,7 @@ include '../../includes/header_sidebar.php';
         ].map(item => `<div class="metric-chip"><span>${item[0]}</span><strong>${item[1]}</strong></div>`).join("");
         safeChartRender("empChart1", { type: "pie", data: { labels: ["Male", "Female"], datasets: [{ data: [data.filter(e => e.gender === "Male").length, data.filter(e => e.gender === "Female").length], backgroundColor: [colors.primary, colors.secondary] }] } });
         safeChartRender("empChart2", { type: "doughnut", data: { labels: ["High > 8 yrs", "Standard 3-8 yrs", "Onboarding < 3 yrs"], datasets: [{ data: [data.filter(e => e.tenureYears > 8).length, data.filter(e => e.tenureYears >= 3 && e.tenureYears <= 8).length, data.filter(e => e.tenureYears < 3).length], backgroundColor: [colors.primary, colors.success, colors.warning] }] } });
-        safeChartRender("empChart3", { type: "bar", data: { labels: branchGroups.map(g => g.name), datasets: [{ label: "Employees", data: branchGroups.map(g => g.items.length), backgroundColor: colors.primary }] } });
+        safeChartRender("empChart3", { type: "bar", data: { labels: deptGroups.map(g => g.name), datasets: [{ label: "Employees", data: deptGroups.map(g => g.items.length), backgroundColor: colors.primary }] } });
         renderList("emp-new-list", ["Employee", "Tenure"], [...data].sort((a, b) => a.tenureYears - b.tenureYears).slice(0, 6).map(e => `<tr><td>${e.name}</td><td>${e.tenureYears} yrs</td></tr>`));
         renderList("emp-long-list", ["Employee", "Tenure"], [...data].sort((a, b) => b.tenureYears - a.tenureYears).slice(0, 6).map(e => `<tr><td>${e.name}</td><td>${e.tenureYears} yrs</td></tr>`));
         renderList("emp-risk-list", ["Employee", "Risk"], [...data].sort((a, b) => riskScore(b) - riskScore(a)).slice(0, 6).map(e => `<tr><td>${e.name}</td><td>${riskScore(e)}</td></tr>`));
@@ -718,16 +728,16 @@ include '../../includes/header_sidebar.php';
         });
     });
 
-    document.getElementById("filter-branch").addEventListener("change", renderAll);
     document.getElementById("filter-dept").addEventListener("change", renderAll);
     document.getElementById("reset-filters").addEventListener("click", () => {
-        document.getElementById("filter-branch").value = "ALL";
         document.getElementById("filter-dept").value = "ALL";
         renderAll();
     });
 
-    populateFilters();
-    renderAll();
+    document.addEventListener("DOMContentLoaded", function () {
+        populateFilters();
+        renderAll();
+    });
 </script>
 
 <?php

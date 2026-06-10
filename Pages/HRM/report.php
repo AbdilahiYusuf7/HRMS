@@ -1,9 +1,11 @@
-<?php
+﻿<?php
 $pageTitle = "Report";
 $activePage = "report";
 $assetPath = "../../assets";
 $menuPath = __DIR__ . "/menu.php";
+require_once __DIR__ . '/../../includes/hrm_config.php';
 include '../../includes/header_sidebar.php';
+$hrmBranchName = hrmBranchName();
 ?>
 <style>
     body {
@@ -474,7 +476,7 @@ include '../../includes/header_sidebar.php';
         <h2>Management</h2>
         <div class="report-list">
             <a href="#report-document" class="report-link" data-report-key="dashboard-summary">Dashboard Summary</a>
-            <a href="#report-document" class="report-link" data-report-key="branch-attendance">Branch Attendance</a>
+            <a href="#report-document" class="report-link" data-report-key="branch-attendance">Department Attendance</a>
             <a href="#report-document" class="report-link" data-report-key="training-summary">Training Summary</a>
             <a href="#report-document" class="report-link" data-report-key="leave-summary">Leave Summary</a>
             <a href="#report-document" class="report-link" data-report-key="retirement-summary">Retirement Summary</a>
@@ -494,7 +496,7 @@ include '../../includes/header_sidebar.php';
         </div>
         <div class="report-document-meta">
             <p><strong>Generated:</strong> <span data-report-generated>May 1, 2026</span></p>
-            <p><strong>Branch:</strong> <span data-report-branch>All Hargeisa Branches</span></p>
+            <p><strong>Branch:</strong> <span data-report-branch><?php echo htmlspecialchars($hrmBranchName); ?></span></p>
             <p><strong>Module:</strong> <span data-report-module>Employee</span></p>
         </div>
     </div>
@@ -581,36 +583,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var employeeRows = [
         ['1', 'Cabdiraxmaan Cali (EMP-0001)', 'Idaacada Branch', 'Human Resource', 'Human Resource Director', 'Active'],
-        ['2', 'Fadumo Xasan (EMP-0002)', 'Xero Awr Branch', 'Finance', 'Finance Officer', 'On Leave'],
-        ['3', 'Mahad Axmed (EMP-0003)', 'Togdheer Branch', 'Operations', 'Operations Supervisor', 'Active'],
-        ['4', 'Sahra Maxamed (EMP-0004)', 'Calaamada Branch', 'Marketing', 'Marketing Coordinator', 'Inactive']
+        ['2', 'Fadumo Xasan (EMP-0002)', 'Idaacada Branch', 'Finance', 'Finance Officer', 'On Leave'],
+        ['3', 'Mahad Axmed (EMP-0003)', 'Idaacada Branch', 'Operations', 'Operations Supervisor', 'Active'],
+        ['4', 'Sahra Maxamed (EMP-0004)', 'Idaacada Branch', 'Marketing', 'Marketing Coordinator', 'Inactive']
     ];
 
     var reports = {
         'employee-info': employeeReport('Employee Info', [['Total Employees', '1,420'], ['Active Employees', '1,284'], ['On Leave Employees', '46']], employeeRows),
         'attendance-reports': employeeReport('Attendance Reports', [['Present Today', '1,187'], ['Late Arrivals', '34'], ['Absent Employees', '28']], [
             ['1', 'Cabdiraxmaan Cali (EMP-0001)', 'Idaacada Branch', 'Human Resource', 'HR Officer', 'Present'],
-            ['2', 'Fadumo Xasan (EMP-0002)', 'Xero Awr Branch', 'Finance', 'Finance Officer', 'Late'],
-            ['3', 'Mahad Axmed (EMP-0003)', 'Togdheer Branch', 'Operations', 'Operations Supervisor', 'Present'],
-            ['4', 'Sahra Maxamed (EMP-0004)', 'Calaamada Branch', 'Marketing', 'Marketing Coordinator', 'Absent']
+            ['2', 'Fadumo Xasan (EMP-0002)', 'Idaacada Branch', 'Finance', 'Finance Officer', 'Late'],
+            ['3', 'Mahad Axmed (EMP-0003)', 'Idaacada Branch', 'Operations', 'Operations Supervisor', 'Present'],
+            ['4', 'Sahra Maxamed (EMP-0004)', 'Idaacada Branch', 'Marketing', 'Marketing Coordinator', 'Absent']
         ]),
         'leave-reports': employeeReport('Leave Reports', [['Total Requests', '42'], ['Approved', '31'], ['Pending', '8']], [
-            ['1', 'Fadumo Xasan (EMP-0002)', 'Xero Awr Branch', 'Finance', 'Finance Officer', 'Approved'],
+            ['1', 'Fadumo Xasan (EMP-0002)', 'Idaacada Branch', 'Finance', 'Finance Officer', 'Approved'],
             ['2', 'Amina Yusuf (EMP-0008)', 'Idaacada Branch', 'Human Resource', 'Talent Officer', 'Pending'],
-            ['3', 'Mohamed Yusuf (EMP-0010)', 'Masalaha Branch', 'Administration', 'Records Coordinator', 'Approved'],
-            ['4', 'Ilwad Noor (EMP-0011)', 'Jigjiga Yar Branch', 'IT', 'Software Developer', 'Rejected']
+            ['3', 'Mohamed Yusuf (EMP-0010)', 'Idaacada Branch', 'Administration', 'Records Coordinator', 'Approved'],
+            ['4', 'Ilwad Noor (EMP-0011)', 'Idaacada Branch', 'IT', 'Software Developer', 'Rejected']
         ]),
         'retirement-reports': employeeReport('Retirement Reports', [['Tracked Employees', '10'], ['Eligible Now', '3'], ['Within 5 Months', '9']], [
-            ['1', 'Mohamed Nuur (EMP-0011)', 'Jigjiga Yar Branch', 'Information Technology', 'IT Administrator', 'Eligible Now'],
-            ['2', 'Hodan Maxamed (EMP-0012)', 'Xero Awr Branch', 'Finance', 'Senior Accountant', 'Eligible Now'],
+            ['1', 'Mohamed Nuur (EMP-0011)', 'Idaacada Branch', 'Information Technology', 'IT Administrator', 'Eligible Now'],
+            ['2', 'Hodan Maxamed (EMP-0012)', 'Idaacada Branch', 'Finance', 'Senior Accountant', 'Eligible Now'],
             ['3', 'Fadumo Cabdi (EMP-0013)', 'Idaacada Branch', 'Human Resource', 'HR Business Partner', 'Eligible Now'],
-            ['4', 'Ayan Cali (EMP-0014)', 'Calaamada Branch', 'Marketing', 'Senior Marketing Officer', 'Within 5 Months']
+            ['4', 'Ayan Cali (EMP-0014)', 'Idaacada Branch', 'Marketing', 'Senior Marketing Officer', 'Within 5 Months']
         ]),
         'training-reports': employeeReport('Training Reports', [['Active Trainings', '7'], ['Completed', '18'], ['Pending Staff', '23']], [
-            ['1', 'Mustafe Cabdi (EMP-0006)', 'Jigjiga Yar Branch', 'Information Technology', 'Systems Support Engineer', 'Completed'],
-            ['2', 'Roda Jama (EMP-0007)', 'Xero Awr Branch', 'Finance', 'Financial Analyst', 'In Progress'],
+            ['1', 'Mustafe Cabdi (EMP-0006)', 'Idaacada Branch', 'Information Technology', 'Systems Support Engineer', 'Completed'],
+            ['2', 'Roda Jama (EMP-0007)', 'Idaacada Branch', 'Finance', 'Financial Analyst', 'In Progress'],
             ['3', 'Amina Yusuf (EMP-0008)', 'Idaacada Branch', 'Human Resource', 'Talent Officer', 'Completed'],
-            ['4', 'Ahmed Jama (EMP-0009)', 'Calaamada Branch', 'Marketing', 'Marketing Associate', 'Pending']
+            ['4', 'Ahmed Jama (EMP-0009)', 'Idaacada Branch', 'Marketing', 'Marketing Associate', 'Pending']
         ]),
         'employee-ranking': employeeReport('Employee Ranking', [['Top Ranked', '5'], ['Average Score', '86%'], ['Needs Review', '2']], employeeRows),
 
@@ -653,70 +655,70 @@ document.addEventListener('DOMContentLoaded', function () {
 
         'salary-reports': payrollReport('Salary Reports', [['Gross Salary', '$3,300'], ['Net Salary', '$3,175'], ['Employees', '4']], [
             ['1', 'Cabdiraxmaan Cali', 'Idaacada Branch', '$850', '$15', '$835'],
-            ['2', 'Fadumo Xasan', 'Xero Awr Branch', '$920', '$20', '$900'],
-            ['3', 'Mahad Axmed', 'Togdheer Branch', '$880', '$35', '$845'],
-            ['4', 'Sahra Maxamed', 'Calaamada Branch', '$650', '$55', '$595']
+            ['2', 'Fadumo Xasan', 'Idaacada Branch', '$920', '$20', '$900'],
+            ['3', 'Mahad Axmed', 'Idaacada Branch', '$880', '$35', '$845'],
+            ['4', 'Sahra Maxamed', 'Idaacada Branch', '$650', '$55', '$595']
         ]),
         'paid-payroll': payrollReport('Paid Payroll', [['Paid Employees', '38'], ['Paid Amount', '$32,450'], ['Pending', '$2,100']], [
             ['1', 'Cabdiraxmaan Cali', 'Idaacada Branch', '$850', '$15', '$835'],
-            ['2', 'Fadumo Xasan', 'Xero Awr Branch', '$920', '$20', '$900'],
-            ['3', 'Mahad Axmed', 'Togdheer Branch', '$880', '$35', '$845'],
+            ['2', 'Fadumo Xasan', 'Idaacada Branch', '$920', '$20', '$900'],
+            ['3', 'Mahad Axmed', 'Idaacada Branch', '$880', '$35', '$845'],
             ['4', 'Amina Yusuf', 'Idaacada Branch', '$760', '$0', '$760']
         ]),
         'total-deductions': payrollReport('Total Deductions', [['Total Deductions', '$405'], ['Absence', '$260'], ['Performance', '$145']], [
             ['1', 'Cabdiraxmaan Cali', 'Idaacada Branch', '$850', '$15', '$835'],
-            ['2', 'Fadumo Xasan', 'Xero Awr Branch', '$920', '$20', '$900'],
-            ['3', 'Mahad Axmed', 'Togdheer Branch', '$880', '$35', '$845'],
-            ['4', 'Sahra Maxamed', 'Calaamada Branch', '$650', '$55', '$595']
+            ['2', 'Fadumo Xasan', 'Idaacada Branch', '$920', '$20', '$900'],
+            ['3', 'Mahad Axmed', 'Idaacada Branch', '$880', '$35', '$845'],
+            ['4', 'Sahra Maxamed', 'Idaacada Branch', '$650', '$55', '$595']
         ]),
         'absence-deductions': payrollReport('Absence Deductions', [['Absence Deductions', '$260'], ['Affected Staff', '12'], ['Highest Deduction', '$35']], [
-            ['1', 'Mahad Axmed', 'Togdheer Branch', '$880', '$35', '$845'],
-            ['2', 'Sahra Maxamed', 'Calaamada Branch', '$650', '$25', '$595'],
-            ['3', 'Fadumo Xasan', 'Xero Awr Branch', '$920', '$20', '$900'],
+            ['1', 'Mahad Axmed', 'Idaacada Branch', '$880', '$35', '$845'],
+            ['2', 'Sahra Maxamed', 'Idaacada Branch', '$650', '$25', '$595'],
+            ['3', 'Fadumo Xasan', 'Idaacada Branch', '$920', '$20', '$900'],
             ['4', 'Cabdiraxmaan Cali', 'Idaacada Branch', '$850', '$15', '$835']
         ]),
         'performance-deductions': payrollReport('Performance Deductions', [['Performance Deductions', '$145'], ['Affected Staff', '5'], ['Highest Deduction', '$30']], [
-            ['1', 'Sahra Maxamed', 'Calaamada Branch', '$650', '$30', '$595'],
-            ['2', 'Hodan Ali', 'Masalaha Branch', '$700', '$25', '$675'],
-            ['3', 'Ahmed Jama', 'Calaamada Branch', '$620', '$20', '$600'],
-            ['4', 'Mohamed Yusuf', 'Masalaha Branch', '$680', '$15', '$665']
+            ['1', 'Sahra Maxamed', 'Idaacada Branch', '$650', '$30', '$595'],
+            ['2', 'Hodan Ali', 'Idaacada Branch', '$700', '$25', '$675'],
+            ['3', 'Ahmed Jama', 'Idaacada Branch', '$620', '$20', '$600'],
+            ['4', 'Mohamed Yusuf', 'Idaacada Branch', '$680', '$15', '$665']
         ]),
         'outstanding-payroll': payrollReport('Outstanding Payroll', [['Outstanding Payroll', '$2,100'], ['Employees Pending', '3'], ['Oldest Pending', '9 Days']], [
-            ['1', 'Mustafe Cabdi', 'Jigjiga Yar Branch', '$810', '$0', '$810'],
-            ['2', 'Ilwad Noor', 'Jigjiga Yar Branch', '$790', '$0', '$790'],
-            ['3', 'Roda Jama', 'Xero Awr Branch', '$500', '$0', '$500'],
+            ['1', 'Mustafe Cabdi', 'Idaacada Branch', '$810', '$0', '$810'],
+            ['2', 'Ilwad Noor', 'Idaacada Branch', '$790', '$0', '$790'],
+            ['3', 'Roda Jama', 'Idaacada Branch', '$500', '$0', '$500'],
             ['4', 'Amina Yusuf', 'Idaacada Branch', '$760', '$0', '$760']
         ]),
 
-        'dashboard-summary': managementReport('Dashboard Summary', [['Employees', '1,420'], ['Active Branches', '5'], ['Open Reviews', '17']], [
-            ['1', 'Employee Operations', 'All Branches', 'Active Employees', '1,284', 'Stable'],
-            ['2', 'Attendance', 'All Branches', 'Present Today', '1,187', 'Stable'],
-            ['3', 'Payroll', 'All Branches', 'Current Run', '$32,450', 'Open'],
-            ['4', 'Promotion', 'All Branches', 'Pending Requests', '2', 'Review']
+        'dashboard-summary': managementReport('Dashboard Summary', [['Employees', '1,420'], ['Home Branch', <?php echo json_encode($hrmBranchName); ?>], ['Open Reviews', '17']], [
+            ['1', 'Employee Operations', <?php echo json_encode($hrmBranchName); ?>, 'Active Employees', '1,284', 'Stable'],
+            ['2', 'Attendance', <?php echo json_encode($hrmBranchName); ?>, 'Present Today', '1,187', 'Stable'],
+            ['3', 'Payroll', <?php echo json_encode($hrmBranchName); ?>, 'Current Run', '$32,450', 'Open'],
+            ['4', 'Promotion', <?php echo json_encode($hrmBranchName); ?>, 'Pending Requests', '2', 'Review']
         ]),
-        'branch-attendance': managementReport('Branch Attendance', [['Present Today', '1,187'], ['Late', '34'], ['Absent', '28']], [
-            ['1', 'Attendance', 'Idaacada Branch', 'Present', '312', 'Stable'],
-            ['2', 'Attendance', 'Xero Awr Branch', 'Present', '284', 'Stable'],
-            ['3', 'Attendance', 'Togdheer Branch', 'Late', '11', 'Watch'],
-            ['4', 'Attendance', 'Calaamada Branch', 'Absent', '8', 'Review']
+        'branch-attendance': managementReport('Department Attendance', [['Present Today', '1,187'], ['Late', '34'], ['Absent', '28']], [
+            ['1', 'Attendance', 'Human Resource', 'Present', '42', 'Stable'],
+            ['2', 'Attendance', 'Finance', 'Present', '38', 'Stable'],
+            ['3', 'Attendance', 'Operations', 'Late', '11', 'Watch'],
+            ['4', 'Attendance', 'Marketing', 'Absent', '8', 'Review']
         ]),
         'training-summary': managementReport('Training Summary', [['Completed', '18'], ['In Progress', '7'], ['Pending', '23']], [
-            ['1', 'Safety Training', 'Idaacada Branch', 'Completed', '8', 'Stable'],
-            ['2', 'Compliance Training', 'Xero Awr Branch', 'In Progress', '4', 'Open'],
-            ['3', 'Systems Training', 'Jigjiga Yar Branch', 'Completed', '6', 'Stable'],
-            ['4', 'Leadership Training', 'Masalaha Branch', 'Pending', '5', 'Review']
+            ['1', 'Safety Training', 'Operations', 'Completed', '8', 'Stable'],
+            ['2', 'Compliance Training', 'Finance', 'In Progress', '4', 'Open'],
+            ['3', 'Systems Training', 'Information Technology', 'Completed', '6', 'Stable'],
+            ['4', 'Leadership Training', 'Human Resource', 'Pending', '5', 'Review']
         ]),
         'leave-summary': managementReport('Leave Summary', [['Total Requests', '42'], ['Approved', '31'], ['Pending', '8']], [
-            ['1', 'Annual Leave', 'All Branches', 'Requests', '12', 'Open'],
-            ['2', 'Sick Leave', 'All Branches', 'Requests', '9', 'Open'],
-            ['3', 'Emergency Leave', 'All Branches', 'Requests', '6', 'Open'],
-            ['4', 'Study Leave', 'All Branches', 'Requests', '3', 'Stable']
+            ['1', 'Annual Leave', <?php echo json_encode($hrmBranchName); ?>, 'Requests', '12', 'Open'],
+            ['2', 'Sick Leave', <?php echo json_encode($hrmBranchName); ?>, 'Requests', '9', 'Open'],
+            ['3', 'Emergency Leave', <?php echo json_encode($hrmBranchName); ?>, 'Requests', '6', 'Open'],
+            ['4', 'Study Leave', <?php echo json_encode($hrmBranchName); ?>, 'Requests', '3', 'Stable']
         ]),
         'retirement-summary': managementReport('Retirement Summary', [['Tracked', '10'], ['Eligible Now', '3'], ['Within 5 Months', '9']], [
-            ['1', 'Retirement', 'Jigjiga Yar Branch', 'Eligible Now', '1', 'Action'],
-            ['2', 'Retirement', 'Xero Awr Branch', 'Eligible Now', '1', 'Action'],
-            ['3', 'Retirement', 'Idaacada Branch', 'Eligible Now', '1', 'Action'],
-            ['4', 'Retirement', 'Calaamada Branch', 'Within 5 Months', '1', 'Watch']
+            ['1', 'Retirement', 'Information Technology', 'Eligible Now', '1', 'Action'],
+            ['2', 'Retirement', 'Finance', 'Eligible Now', '1', 'Action'],
+            ['3', 'Retirement', 'Human Resource', 'Eligible Now', '1', 'Action'],
+            ['4', 'Retirement', 'Marketing', 'Within 5 Months', '1', 'Watch']
         ]),
         'promotion-summary': managementReport('Promotion Summary', [['This Month', '14'], ['This Quarter', '37'], ['This Year', '118']], [
             ['1', 'Promotion', 'Operations', 'Completed', '24', 'High'],
@@ -731,7 +733,7 @@ document.addEventListener('DOMContentLoaded', function () {
         title.textContent = report.title;
         description.textContent = report.description;
         generated.textContent = 'May 1, 2026';
-        branch.textContent = 'All Hargeisa Branches';
+        branch.textContent = <?php echo json_encode($hrmBranchName); ?>;
         module.textContent = report.module;
         note.textContent = report.note;
         stats.innerHTML = '';

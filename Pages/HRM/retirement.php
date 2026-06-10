@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $pageTitle = "Retirement";
 $activePage = "retirement";
 $assetPath = "../../assets";
@@ -735,7 +735,7 @@ include '../../includes/header_sidebar.php';
 
             <div class="retirement-employee-meta">
                 <div class="retirement-employee-row"><span>Department</span><strong>Marketing</strong></div>
-                <div class="retirement-employee-row"><span>Location</span><strong>Calaamada Branch</strong></div>
+                <div class="retirement-employee-row"><span>Location</span><strong>Idaacada Branch</strong></div>
             </div>
 
             <div class="retirement-employee-pills">
@@ -760,7 +760,7 @@ include '../../includes/header_sidebar.php';
 
             <div class="retirement-employee-meta">
                 <div class="retirement-employee-row"><span>Department</span><strong>Administration</strong></div>
-                <div class="retirement-employee-row"><span>Location</span><strong>Masalaha Branch</strong></div>
+                <div class="retirement-employee-row"><span>Location</span><strong>Idaacada Branch</strong></div>
             </div>
 
             <div class="retirement-employee-pills">
@@ -795,20 +795,20 @@ include '../../includes/header_sidebar.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-employee="Mohamed Nuur" data-number="EMP-0011" data-role="IT Administrator" data-department="Information Technology" data-location="Jigjiga Yar Branch" data-age="59" data-date="2026-04-28" data-remaining="2" data-remaining-label="2 days left" data-status="Eligible Now">
+                    <tr data-employee="Mohamed Nuur" data-number="EMP-0011" data-role="IT Administrator" data-department="Information Technology" data-location="Idaacada Branch" data-age="59" data-date="2026-04-28" data-remaining="2" data-remaining-label="2 days left" data-status="Eligible Now">
                         <td><div class="employee-table-name"><span class="employee-avatar">MN</span><div><strong>Mohamed Nuur</strong><span>EMP-0011 · IT Administrator</span></div></div></td>
                         <td>Information Technology</td>
-                        <td>Jigjiga Yar Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>59</td>
                         <td>2026-04-28</td>
                         <td>2 days left</td>
                         <td><span class="employee-status active">Eligible Now</span></td>
                         <td><button type="button" class="retirement-register-action" data-retirement-register-view><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
-                    <tr data-employee="Hodan Maxamed" data-number="EMP-0012" data-role="Senior Accountant" data-department="Finance" data-location="Xero Awr Branch" data-age="60" data-date="2026-04-29" data-remaining="3" data-remaining-label="3 days left" data-status="Eligible Now">
+                    <tr data-employee="Hodan Maxamed" data-number="EMP-0012" data-role="Senior Accountant" data-department="Finance" data-location="Idaacada Branch" data-age="60" data-date="2026-04-29" data-remaining="3" data-remaining-label="3 days left" data-status="Eligible Now">
                         <td><div class="employee-table-name"><span class="employee-avatar">HM</span><div><strong>Hodan Maxamed</strong><span>EMP-0012 · Senior Accountant</span></div></div></td>
                         <td>Finance</td>
-                        <td>Xero Awr Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>60</td>
                         <td>2026-04-29</td>
                         <td>3 days left</td>
@@ -825,20 +825,20 @@ include '../../includes/header_sidebar.php';
                         <td><span class="employee-status active">Eligible Now</span></td>
                         <td><button type="button" class="retirement-register-action" data-retirement-register-view><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
-                    <tr data-employee="Ayan Cali" data-number="EMP-0014" data-role="Senior Marketing Officer" data-department="Marketing" data-location="Calaamada Branch" data-age="58" data-date="2026-07-18" data-remaining="54" data-remaining-label="1.8 months left" data-status="Within 5 Months">
+                    <tr data-employee="Ayan Cali" data-number="EMP-0014" data-role="Senior Marketing Officer" data-department="Marketing" data-location="Idaacada Branch" data-age="58" data-date="2026-07-18" data-remaining="54" data-remaining-label="1.8 months left" data-status="Within 5 Months">
                         <td><div class="employee-table-name"><span class="employee-avatar">AC</span><div><strong>Ayan Cali</strong><span>EMP-0014 · Senior Marketing Officer</span></div></div></td>
                         <td>Marketing</td>
-                        <td>Calaamada Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>58</td>
                         <td>2026-07-18</td>
                         <td>1.8 months left</td>
                         <td><span class="employee-status late">Within 5 Months</span></td>
                         <td><button type="button" class="retirement-register-action" data-retirement-register-view><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                     </tr>
-                    <tr data-employee="Maxamed Faarax" data-number="EMP-0015" data-role="Procurement Specialist" data-department="Administration" data-location="Masalaha Branch" data-age="59" data-date="2026-08-10" data-remaining="75" data-remaining-label="2.5 months left" data-status="Within 5 Months">
+                    <tr data-employee="Maxamed Faarax" data-number="EMP-0015" data-role="Procurement Specialist" data-department="Administration" data-location="Idaacada Branch" data-age="59" data-date="2026-08-10" data-remaining="75" data-remaining-label="2.5 months left" data-status="Within 5 Months">
                         <td><div class="employee-table-name"><span class="employee-avatar">MF</span><div><strong>Maxamed Faarax</strong><span>EMP-0015 · Procurement Specialist</span></div></div></td>
                         <td>Administration</td>
-                        <td>Masalaha Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>59</td>
                         <td>2026-08-10</td>
                         <td>2.5 months left</td>

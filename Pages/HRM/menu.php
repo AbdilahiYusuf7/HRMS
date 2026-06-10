@@ -37,6 +37,21 @@ $currentPage = isset($activePage) ? $activePage : '';
     </a>
 </li>
 
+<li class="sidebar-menu-item has-submenu <?php echo in_array($currentPage, ['recruitment-dashboard', 'recruitment-vacancies', 'recruitment-applicants', 'recruitment-interviews', 'recruitment-selected']) ? 'active' : ''; ?>">
+    <a href="#recruitment-selection" class="submenu-toggle" aria-expanded="false">
+        <span class="material-symbols-rounded">person_search</span>
+        <span>Recruitment & Selection</span>
+        <span class="material-symbols-rounded submenu-arrow">expand_less</span>
+    </a>
+    <ul class="sidebar-submenu">
+        <li class="<?php echo $currentPage === 'recruitment-dashboard' ? 'active' : ''; ?>"><a href="recruitment_dashboard.php">Dashboard</a></li>
+        <li class="<?php echo $currentPage === 'recruitment-vacancies' ? 'active' : ''; ?>"><a href="recruitment_vacancies.php">Job Vacancies</a></li>
+        <li class="<?php echo $currentPage === 'recruitment-applicants' ? 'active' : ''; ?>"><a href="recruitment_applicants.php">Applicants</a></li>
+        <li class="<?php echo $currentPage === 'recruitment-interviews' ? 'active' : ''; ?>"><a href="recruitment_interviews.php">Interviews</a></li>
+        <li class="<?php echo $currentPage === 'recruitment-selected' ? 'active' : ''; ?>"><a href="recruitment_selected.php">Selected Candidates</a></li>
+    </ul>
+</li>
+
 <li class="sidebar-menu-item has-submenu <?php echo in_array($currentPage, ['promotion-ranking', 'employee-ranking', 'promotion-requests', 'promotion-history', 'promotion-rules', 'eligibility-reviews', 'promotion-reports']) ? 'active' : ''; ?>">
     <a href="#promotion-ranking" class="submenu-toggle" aria-expanded="false">
         <span class="material-symbols-rounded">workspace_premium</span>

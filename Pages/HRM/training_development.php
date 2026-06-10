@@ -1,8 +1,9 @@
-<?php
+﻿<?php
 $pageTitle = "Training & Development";
 $activePage = "training-development";
 $assetPath = "../../assets";
 $menuPath = __DIR__ . "/menu.php";
+require_once __DIR__ . '/../../includes/hrm_config.php';
 include '../../includes/header_sidebar.php';
 ?>
 <style>
@@ -810,7 +811,7 @@ include '../../includes/header_sidebar.php';
                 </div>
                 <div class="training-session-meta">
                     <span>2026-03-19</span>
-                    <span>Masalaha Branch</span>
+                    <span>Idaacada Branch</span>
                 </div>
             </article>
 
@@ -824,7 +825,7 @@ include '../../includes/header_sidebar.php';
                 </div>
                 <div class="training-session-meta">
                     <span>2026-04-11</span>
-                    <span>Togdheer Branch</span>
+                    <span>Idaacada Branch</span>
                 </div>
             </article>
 
@@ -930,11 +931,11 @@ include '../../includes/header_sidebar.php';
                         <td>Leadership</td>
                         <td>Information Technology</td>
                         <td>Helpdesk</td>
-                        <td>Jigjiga Yar Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>Service Lab</td>
                         <td>2026-05-22</td>
                         <td><span class="training-status-pill progress">In Progress</span></td>
-                        <td><button type="button" class="training-trainees-btn" aria-label="View Helpdesk Service Excellence trainees" data-training-trainees-view data-training-title="Helpdesk Service Excellence" data-training-code="TRN-012" data-training-count="2" data-trainees="Mustafe Cabdi|EMP-0006|Information Technology|Jigjiga Yar Branch|2026-04-26|In Progress;Ilwad Noor|EMP-0011|Information Technology|Jigjiga Yar Branch|2026-04-27|In Progress"><span class="material-symbols-rounded">visibility</span><span>2</span></button></td>
+                        <td><button type="button" class="training-trainees-btn" aria-label="View Helpdesk Service Excellence trainees" data-training-trainees-view data-training-title="Helpdesk Service Excellence" data-training-code="TRN-012" data-training-count="2" data-trainees="Mustafe Cabdi|EMP-0006|Information Technology|Idaacada Branch|2026-04-26|In Progress;Ilwad Noor|EMP-0011|Information Technology|Idaacada Branch|2026-04-27|In Progress"><span class="material-symbols-rounded">visibility</span><span>2</span></button></td>
                     </tr>
                     <tr>
                         <td>
@@ -947,11 +948,11 @@ include '../../includes/header_sidebar.php';
                         <td>Compliance</td>
                         <td>Administration</td>
                         <td>Records Desk</td>
-                        <td>Masalaha Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>Policy Center</td>
                         <td>2026-05-15</td>
                         <td><span class="training-status-pill scheduled">Scheduled</span></td>
-                        <td><button type="button" class="training-trainees-btn" aria-label="View Records Management Basics trainees" data-training-trainees-view data-training-title="Records Management Basics" data-training-code="TRN-011" data-training-count="1" data-trainees="Hodan Ali|EMP-0005|Administration|Masalaha Branch|2026-04-19|Scheduled"><span class="material-symbols-rounded">visibility</span><span>1</span></button></td>
+                        <td><button type="button" class="training-trainees-btn" aria-label="View Records Management Basics trainees" data-training-trainees-view data-training-title="Records Management Basics" data-training-code="TRN-011" data-training-count="1" data-trainees="Hodan Ali|EMP-0005|Administration|Idaacada Branch|2026-04-19|Scheduled"><span class="material-symbols-rounded">visibility</span><span>1</span></button></td>
                     </tr>
                     <tr>
                         <td>
@@ -964,11 +965,11 @@ include '../../includes/header_sidebar.php';
                         <td>Technical</td>
                         <td>Marketing</td>
                         <td>Insights</td>
-                        <td>Calaamada Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>Data Sense</td>
                         <td>2026-05-09</td>
                         <td><span class="training-status-pill scheduled">Scheduled</span></td>
-                        <td><button type="button" class="training-trainees-btn" aria-label="View Customer Journey Analytics trainees" data-training-trainees-view data-training-title="Customer Journey Analytics" data-training-code="TRN-010" data-training-count="2" data-trainees="Sahra Maxamed|EMP-0004|Marketing|Calaamada Branch|2026-04-16|Scheduled;Nimco Warsame|EMP-0014|Marketing|Calaamada Branch|2026-04-17|Scheduled"><span class="material-symbols-rounded">visibility</span><span>2</span></button></td>
+                        <td><button type="button" class="training-trainees-btn" aria-label="View Customer Journey Analytics trainees" data-training-trainees-view data-training-title="Customer Journey Analytics" data-training-code="TRN-010" data-training-count="2" data-trainees="Sahra Maxamed|EMP-0004|Marketing|Idaacada Branch|2026-04-16|Scheduled;Nimco Warsame|EMP-0014|Marketing|Idaacada Branch|2026-04-17|Scheduled"><span class="material-symbols-rounded">visibility</span><span>2</span></button></td>
                     </tr>
                     <tr>
                         <td>
@@ -998,11 +999,11 @@ include '../../includes/header_sidebar.php';
                         <td>Finance</td>
                         <td>Finance</td>
                         <td>Reporting</td>
-                        <td>Xero Awr Branch</td>
+                        <td>Idaacada Branch</td>
                         <td>SkillBridge</td>
                         <td>2026-04-18</td>
                         <td><span class="training-status-pill completed">Completed</span></td>
-                        <td><button type="button" class="training-trainees-btn" aria-label="View Advanced Excel for Finance trainees" data-training-trainees-view data-training-title="Advanced Excel for Finance" data-training-code="TRN-008" data-training-count="2" data-trainees="Fadumo Xasan|EMP-0002|Finance|Xero Awr Branch|2026-03-28|Completed;Khadar Jama|EMP-0012|Finance|Xero Awr Branch|2026-03-29|Completed"><span class="material-symbols-rounded">visibility</span><span>2</span></button></td>
+                        <td><button type="button" class="training-trainees-btn" aria-label="View Advanced Excel for Finance trainees" data-training-trainees-view data-training-title="Advanced Excel for Finance" data-training-code="TRN-008" data-training-count="2" data-trainees="Fadumo Xasan|EMP-0002|Finance|Idaacada Branch|2026-03-28|Completed;Khadar Jama|EMP-0012|Finance|Idaacada Branch|2026-03-29|Completed"><span class="material-symbols-rounded">visibility</span><span>2</span></button></td>
                     </tr>
                 </tbody>
             </table>
@@ -1071,15 +1072,7 @@ include '../../includes/header_sidebar.php';
                     </div>
                     <div class="training-form-field">
                         <label for="trainingBranch">Branch</label>
-                        <select id="trainingBranch" name="trainingBranch" required>
-                            <option value="Idaacada Branch">Idaacada Branch</option>
-                            <option value="Jigjiga Yar Branch">Jigjiga Yar Branch</option>
-                            <option value="Calaamadaha Branch">Calaamadaha Branch</option>
-                            <option value="150 Street Branch">150 Street Branch</option>
-                            <option value="31 May Branch">31 May Branch</option>
-                            <option value="New Hargeisa Branch">New Hargeisa Branch</option>
-                            <option value="Ahmed Dhagah Branch">Ahmed Dhagah Branch</option>
-                        </select>
+                        <input type="text" id="trainingBranch" name="trainingBranch" value="<?php echo htmlspecialchars(hrmBranchName()); ?>" readonly required>
                     </div>
                     <div class="training-form-field">
                         <label for="trainingProvider">Provider</label>

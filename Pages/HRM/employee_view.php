@@ -3,85 +3,23 @@ $pageTitle = "Employee Profile";
 $activePage = "employees";
 $assetPath = "../../assets";
 $menuPath = __DIR__ . "/menu.php";
-
-$employees = [
-    'EMP-0001' => [
-        'name' => 'Cabdiraxmaan Cali',
-        'role' => 'Human Resource Director',
-        'status' => 'Active',
-        'department' => 'Human Resource',
-        'branch' => 'Idaacada Branch',
-        'join_date' => '2024-01-12',
-        'phone' => '+252 61 555 0101',
-        'email' => 'cabdiraxmaan.cali@hrms.local',
-        'location' => 'Idaacada, Hargeisa',
-        'initials' => 'CC',
-    ],
-    'EMP-0002' => [
-        'name' => 'Fadumo Xasan',
-        'role' => 'Finance Officer',
-        'status' => 'On Leave',
-        'department' => 'Finance',
-        'branch' => 'Xero Awr Branch',
-        'join_date' => '2023-11-07',
-        'phone' => '+252 61 555 0202',
-        'email' => 'fadumo.xasan@hrms.local',
-        'location' => 'Xero Awr, Hargeisa',
-        'initials' => 'FX',
-    ],
-    'EMP-0003' => [
-        'name' => 'Mahad Axmed',
-        'role' => 'Operations Supervisor',
-        'status' => 'Active',
-        'department' => 'Operations',
-        'branch' => 'Togdheer Branch',
-        'join_date' => '2022-08-16',
-        'phone' => '+252 61 555 0303',
-        'email' => 'mahad.axmed@hrms.local',
-        'location' => 'Togdheer, Burco',
-        'initials' => 'MA',
-    ],
-    'EMP-0004' => [
-        'name' => 'Sahra Maxamed',
-        'role' => 'Marketing Coordinator',
-        'status' => 'Inactive',
-        'department' => 'Marketing',
-        'branch' => 'Calaamada Branch',
-        'join_date' => '2024-03-03',
-        'phone' => '+252 61 555 0404',
-        'email' => 'sahra.maxamed@hrms.local',
-        'location' => 'Calaamada, Hargeisa',
-        'initials' => 'SM',
-    ],
-    'EMP-0005' => [
-        'name' => 'Hodan Maxamed',
-        'role' => 'Finance Manager',
-        'status' => 'Active',
-        'department' => 'Finance',
-        'branch' => 'Hargaysa Branch',
-        'join_date' => '2021-06-24',
-        'phone' => '+252 61 555 0505',
-        'email' => 'hodan.maxamed@hrms.local',
-        'location' => 'Hargaysa, Somaliland',
-        'initials' => 'HM',
-    ],
-    'EMP-0006' => [
-        'name' => 'Mustafe Cabdi',
-        'role' => 'IT Systems Officer',
-        'status' => 'Active',
-        'department' => 'Information Technology',
-        'branch' => 'Idaacada Branch',
-        'join_date' => '2020-04-18',
-        'phone' => '+252 61 555 0606',
-        'email' => 'mustafe.cabdi@hrms.local',
-        'location' => 'Idaacada, Hargeisa',
-        'initials' => 'MC',
-    ],
-];
+require_once __DIR__ . '/../../includes/hrm_employee_store.php';
 
 $employeeId = isset($_GET['id']) ? $_GET['id'] : 'EMP-0001';
-$employee = isset($employees[$employeeId]) ? $employees[$employeeId] : $employees['EMP-0001'];
-$statusClass = $employee['status'] === 'On Leave' ? 'leave' : strtolower($employee['status']);
+$employee = hrmEmployeeFind($employeeId);
+$employeeId = $employee['employee_number'];
+$statusClass = hrmEmployeeStatusClass($employee['status']);
+$employeeDocuments = isset($employee['documents']) && is_array($employee['documents']) ? $employee['documents'] : [];
+$employeeDocumentCount = count($employeeDocuments);
+$employeeQualificationCount = count(array_filter($employeeDocuments, function ($document) {
+    return ($document['category'] ?? '') === 'Academic';
+}));
+$employeeIdentityCount = count(array_filter($employeeDocuments, function ($document) {
+    return ($document['category'] ?? '') === 'Identity';
+}));
+$employeeCertificateCount = count(array_filter($employeeDocuments, function ($document) {
+    return in_array(($document['type'] ?? ''), ['Qualification', 'Profile Photo'], true);
+}));
 
 include '../../includes/header_sidebar.php';
 ?>
@@ -89,10 +27,6 @@ include '../../includes/header_sidebar.php';
     <a href="employees.php" class="btn btn-secondary">
         <span class="material-symbols-rounded" style="font-size: 20px;">arrow_back</span>
         <span>Go Back</span>
-    </a>
-    <a href="employee_analytics.php?id=<?php echo htmlspecialchars($employeeId); ?>" class="btn btn-primary" style="background-color: var(--primary-color);">
-        <span class="material-symbols-rounded" style="font-size: 20px;">analytics</span>
-        <span>Deep Analytics</span>
     </a>
     <button type="button" class="btn btn-outline">
         <span class="material-symbols-rounded" style="font-size: 20px;">print</span>
@@ -206,7 +140,7 @@ include '../../includes/header_sidebar.php';
                 <span class="material-symbols-rounded">wc</span>
                 <div>
                     <dt>Gender</dt>
-                    <dd>Male</dd>
+                    <dd><?php echo htmlspecialchars($employee['gender'] ?? ''); ?></dd>
                 </div>
             </div>
 
@@ -214,7 +148,7 @@ include '../../includes/header_sidebar.php';
                 <span class="material-symbols-rounded">cake</span>
                 <div>
                     <dt>Date of Birth</dt>
-                    <dd>1992-04-18</dd>
+                    <dd><?php echo htmlspecialchars($employee['date_of_birth'] ?? ''); ?></dd>
                 </div>
             </div>
 
@@ -279,7 +213,7 @@ include '../../includes/header_sidebar.php';
                 <span class="material-symbols-rounded">verified_user</span>
                 <div>
                     <dt>Employment Type</dt>
-                    <dd>Full Time</dd>
+                    <dd><?php echo htmlspecialchars($employee['employment_type'] ?? ''); ?></dd>
                 </div>
             </div>
 
@@ -796,7 +730,7 @@ include '../../includes/header_sidebar.php';
                 <time>2024-09-03</time>
                 <h3>Human Resource Officer</h3>
                 <p class="promotion-from">Promoted from HR Executive</p>
-                <p>Promoted to current officer role after strong service delivery, policy follow-up, and cross-branch support.</p>
+                <p>Promoted to current officer role after strong service delivery, policy follow-up, and departmental support.</p>
             </div>
             <div class="promotion-tags">
                 <span>Leadership</span>
@@ -855,7 +789,7 @@ include '../../includes/header_sidebar.php';
                             <td>Asha Mohamed</td>
                             <td><button type="button" class="warning-view-btn" data-promotion-documents-view><span class="material-symbols-rounded">visibility</span><span>View</span></button></td>
                         </tr>
-                        <tr data-promotion-date="2024-09-03" data-from-role="HR Executive" data-to-role="Human Resource Officer" data-department="Human Resource" data-approved-by="Asha Mohamed" data-promotion-note="Promotion supported by cross-branch HR service review and final management approval." data-promotion-files="cross-branch-service-review.pdf|management-approval.pdf">
+                        <tr data-promotion-date="2024-09-03" data-from-role="HR Executive" data-to-role="Human Resource Officer" data-department="Human Resource" data-approved-by="Asha Mohamed" data-promotion-note="Promotion supported by HR service review and final management approval." data-promotion-files="hr-service-review.pdf|management-approval.pdf">
                             <td>2024-09-03</td>
                             <td>HR Executive</td>
                             <td><strong>Human Resource Officer</strong></td>
@@ -959,9 +893,9 @@ include '../../includes/header_sidebar.php';
         <div class="payroll-breakdown-layout">
             <div class="payroll-donut-wrap">
                 <svg class="payroll-donut" viewBox="0 0 180 180" role="img" aria-label="Payroll breakdown chart">
-                    <circle class="payroll-ring base" cx="90" cy="90" r="62"></circle>
-                    <circle class="payroll-ring bonus" cx="90" cy="90" r="62"></circle>
-                    <circle class="payroll-ring deduction" cx="90" cy="90" r="62"></circle>
+                    <circle class="payroll-ring base" cx="90" cy="90" r="62" data-chart-title="Base Salary" data-chart-value="$350 fixed monthly salary"></circle>
+                    <circle class="payroll-ring bonus" cx="90" cy="90" r="62" data-chart-title="Bonuses" data-chart-value="$78 total approved bonus value"></circle>
+                    <circle class="payroll-ring deduction" cx="90" cy="90" r="62" data-chart-title="Deductions" data-chart-value="$26 total deducted from payroll"></circle>
                     <circle class="payroll-ring-hole" cx="90" cy="90" r="42"></circle>
                     <text x="90" y="84" text-anchor="middle">$402</text>
                     <text x="90" y="104" text-anchor="middle">Total</text>
@@ -1548,7 +1482,7 @@ include '../../includes/header_sidebar.php';
         <div class="employee-insight-card total">
             <div>
                 <h3>Qualifications</h3>
-                <strong>1</strong>
+                <strong><?php echo $employeeDocumentCount ? $employeeQualificationCount : 1; ?></strong>
                 <p>Academic and professional qualifications on file.</p>
             </div>
             <div class="employee-insight-icon">
@@ -1559,7 +1493,7 @@ include '../../includes/header_sidebar.php';
         <div class="employee-insight-card active">
             <div>
                 <h3>Certificates</h3>
-                <strong>1</strong>
+                <strong><?php echo $employeeDocumentCount ? $employeeCertificateCount : 1; ?></strong>
                 <p>Issued certificates and professional course evidence.</p>
             </div>
             <div class="employee-insight-icon">
@@ -1570,7 +1504,7 @@ include '../../includes/header_sidebar.php';
         <div class="employee-insight-card leave">
             <div>
                 <h3>Identity Docs</h3>
-                <strong>1</strong>
+                <strong><?php echo $employeeDocumentCount ? $employeeIdentityCount : 1; ?></strong>
                 <p>Identity and compliance documents currently available.</p>
             </div>
             <div class="employee-insight-icon">
@@ -1583,7 +1517,7 @@ include '../../includes/header_sidebar.php';
         <div class="employee-records-header">
             <div>
                 <h2>Documents & Qualifications</h2>
-                <p>Employee document register with sample document preview action.</p>
+                <p>Employee document register with uploaded files and profile document previews.</p>
             </div>
         </div>
 
@@ -1601,6 +1535,18 @@ include '../../includes/header_sidebar.php';
                         </tr>
                     </thead>
                     <tbody>
+                        <?php if ($employeeDocuments): ?>
+                            <?php foreach ($employeeDocuments as $document): ?>
+                            <tr data-type="<?php echo htmlspecialchars($document['type'] ?? ''); ?>" data-document="<?php echo htmlspecialchars($document['document'] ?? ''); ?>" data-category="<?php echo htmlspecialchars($document['category'] ?? ''); ?>" data-status="<?php echo htmlspecialchars($document['status'] ?? ''); ?>" data-updated="<?php echo htmlspecialchars($document['updated'] ?? ''); ?>" data-doc-key="<?php echo htmlspecialchars($document['key'] ?? ''); ?>">
+                                <td><strong><?php echo htmlspecialchars($document['type'] ?? ''); ?></strong></td>
+                                <td><?php echo htmlspecialchars($document['original_name'] ?? ($document['document'] ?? '')); ?></td>
+                                <td><?php echo htmlspecialchars($document['category'] ?? ''); ?></td>
+                                <td><span class="employee-status active"><?php echo htmlspecialchars($document['status'] ?? 'Uploaded'); ?></span></td>
+                                <td><?php echo htmlspecialchars($document['updated'] ?? ''); ?></td>
+                                <td><a class="warning-view-btn" href="<?php echo htmlspecialchars($document['url'] ?? '#'); ?>" target="_blank" rel="noopener"><span class="material-symbols-rounded">open_in_new</span> Open</a></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
                         <tr data-type="CV" data-document="Employee CV" data-category="Profile" data-status="Verified" data-updated="2026-04-14" data-doc-key="cv"><td><strong>CV</strong></td><td>Employee CV</td><td>Profile</td><td><span class="employee-status active">Verified</span></td><td>2026-04-14</td><td><button type="button" class="warning-view-btn" data-document-view><span class="material-symbols-rounded">visibility</span> View</button></td></tr>
                         <tr data-type="National ID Card" data-document="National ID Card" data-category="Identity" data-status="Verified" data-updated="2026-01-18" data-doc-key="national-id"><td><strong>National ID Card</strong></td><td>National ID Card</td><td>Identity</td><td><span class="employee-status active">Verified</span></td><td>2026-01-18</td><td><button type="button" class="warning-view-btn" data-document-view><span class="material-symbols-rounded">visibility</span> View</button></td></tr>
                         <tr data-type="Certificate" data-document="HR Compliance Certificate" data-category="Professional" data-status="Verified" data-updated="2026-03-21" data-doc-key="certificate"><td><strong>Certificate</strong></td><td>HR Compliance Certificate</td><td>Professional</td><td><span class="employee-status active">Verified</span></td><td>2026-03-21</td><td><button type="button" class="warning-view-btn" data-document-view><span class="material-symbols-rounded">visibility</span> View</button></td></tr>
@@ -1609,11 +1555,12 @@ include '../../includes/header_sidebar.php';
                         <tr data-type="Employee Contract" data-document="Employee Contract" data-category="Employment" data-status="Pending Review" data-updated="2026-02-05" data-doc-key="employee-contract"><td><strong>Employee Contract</strong></td><td>Employee Contract</td><td>Employment</td><td><span class="employee-status leave">Pending Review</span></td><td>2026-02-05</td><td><button type="button" class="warning-view-btn" data-document-view><span class="material-symbols-rounded">visibility</span> View</button></td></tr>
                         <tr data-type="Honor Certificate" data-document="Honor Certificate" data-category="Recognition" data-status="Verified" data-updated="2026-04-20" data-doc-key="honor-certificate"><td><strong>Honor Certificate</strong></td><td>Honor Certificate</td><td>Recognition</td><td><span class="employee-status active">Verified</span></td><td>2026-04-20</td><td><button type="button" class="warning-view-btn" data-document-view><span class="material-symbols-rounded">visibility</span> View</button></td></tr>
                         <tr data-type="Qualification" data-document="Bachelor of Business Administration" data-category="Academic" data-status="Verified" data-updated="2026-04-12" data-doc-key="certificate"><td><strong>Qualification</strong></td><td>Bachelor of Business Administration</td><td>Academic</td><td><span class="employee-status active">Verified</span></td><td>2026-04-12</td><td><button type="button" class="warning-view-btn" data-document-view><span class="material-symbols-rounded">visibility</span> View</button></td></tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
             <div class="employee-table-footer">
-                <span data-document-table-summary>Showing 1-4 of 8 documents</span>
+                <span data-document-table-summary>Showing 1-4 of <?php echo $employeeDocumentCount ?: 8; ?> documents</span>
                 <div class="employee-pagination" data-document-pagination></div>
             </div>
         </div>
@@ -1660,7 +1607,7 @@ include '../../includes/header_sidebar.php';
                     <div>
                         <h3>Human Resource Director</h3>
                         <strong>HRMS Somaliland (Current)</strong>
-                        <p>Overseeing all HR operations across Somaliland branches including recruitment, employee relations, payroll, and compliance with local labour standards.</p>
+                        <p>Overseeing all HR operations at Idaacada Branch including recruitment, employee relations, payroll, and compliance with local labour standards.</p>
                     </div>
                     <time datetime="2024-01">Jan 2024 - Present</time>
                 </div>
