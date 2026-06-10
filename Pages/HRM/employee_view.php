@@ -103,6 +103,8 @@ include '../../includes/header_sidebar.php';
     <a href="#leaves" data-employee-tab-target="leaves">Leaves</a>
     <a href="#promotion" data-employee-tab-target="promotion">Promotion</a>
     <a href="#payroll" data-employee-tab-target="payroll">Payroll</a>
+    <a href="#performance" data-employee-tab-target="performance">Performance</a>
+    <a href="#feedback" data-employee-tab-target="feedback">Feedback</a>
     <a href="#training" data-employee-tab-target="training">Training</a>
     <a href="#pension" data-employee-tab-target="pension">Pension</a>
     <a href="#roster" data-employee-tab-target="roster">Roster</a>
@@ -845,6 +847,286 @@ include '../../includes/header_sidebar.php';
         </div>
     </section>
 </div>
+
+<section class="employee-profile-tab-panel" id="performance" data-employee-tab-panel="performance">
+    <div class="employee-insights-grid">
+        <div class="employee-insight-card total">
+            <div>
+                <h3>System Performance</h3>
+                <strong>90%</strong>
+                <p>Overall performance score for this employee</p>
+            </div>
+            <div class="employee-insight-icon">
+                <span class="material-symbols-rounded">monitoring</span>
+            </div>
+        </div>
+
+        <div class="employee-insight-card active">
+            <div>
+                <h3>Performance Label</h3>
+                <strong>Good</strong>
+                <p>Assigned performance rating category</p>
+            </div>
+            <div class="employee-insight-icon">
+                <span class="material-symbols-rounded">verified</span>
+            </div>
+        </div>
+
+        <div class="employee-insight-card new-month">
+            <div>
+                <h3>Review Status</h3>
+                <strong>Top Performer</strong>
+                <p>Current review cycle status</p>
+            </div>
+            <div class="employee-insight-icon">
+                <span class="material-symbols-rounded">emoji_events</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="employee-records-section">
+        <div class="employee-records-header">
+            <div>
+                <h2>Performance Review History</h2>
+                <p>Recorded performance reviews and system assessment scores.</p>
+            </div>
+        </div>
+
+        <div class="employee-table-panel" data-performance-table>
+            <div class="employee-table-scroll">
+                <table class="employee-data-table">
+                    <thead>
+                        <tr>
+                            <th><button type="button" data-performance-sort-key="date">Review Date <span class="material-symbols-rounded">unfold_more</span></button></th>
+                            <th><button type="button" data-performance-sort-key="department">Department <span class="material-symbols-rounded">unfold_more</span></button></th>
+                            <th><button type="button" data-performance-sort-key="agenda">Agenda <span class="material-symbols-rounded">unfold_more</span></button></th>
+                            <th><button type="button" data-performance-sort-key="score">Score <span class="material-symbols-rounded">unfold_more</span></button></th>
+                            <th><button type="button" data-performance-sort-key="label">Label <span class="material-symbols-rounded">unfold_more</span></button></th>
+                            <th><button type="button" data-performance-sort-key="status">Status <span class="material-symbols-rounded">unfold_more</span></button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-performance-date="2026-04-18" data-performance-department="Human Resource" data-performance-agenda="Staff Follow Up" data-performance-score="92" data-performance-label="Good" data-performance-status="Top Performer">
+                            <td>2026-04-18</td>
+                            <td>Human Resource</td>
+                            <td>Staff Follow Up</td>
+                            <td><strong>92%</strong></td>
+                            <td>Good</td>
+                            <td><span class="employee-status active">Top Performer</span></td>
+                        </tr>
+                        <tr data-performance-date="2026-03-15" data-performance-department="Human Resource" data-performance-agenda="Audit Follow Up" data-performance-score="88" data-performance-label="Normal" data-performance-status="Completed">
+                            <td>2026-03-15</td>
+                            <td>Human Resource</td>
+                            <td>Audit Follow Up</td>
+                            <td><strong>88%</strong></td>
+                            <td>Normal</td>
+                            <td><span class="employee-status late">Completed</span></td>
+                        </tr>
+                        <tr data-performance-date="2026-02-10" data-performance-department="Human Resource" data-performance-agenda="Branch Follow Up" data-performance-score="94" data-performance-label="Good" data-performance-status="Top Performer">
+                            <td>2026-02-10</td>
+                            <td>Human Resource</td>
+                            <td>Branch Follow Up</td>
+                            <td><strong>94%</strong></td>
+                            <td>Good</td>
+                            <td><span class="employee-status active">Top Performer</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="employee-table-footer">
+                <span data-performance-table-summary>Showing 1-3 of 3 reviews</span>
+                <div class="employee-pagination" data-performance-pagination></div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<section class="employee-profile-tab-panel" id="feedback" data-employee-tab-panel="feedback">
+    <style>
+        #feedback .employee-insight-card h3 {
+            margin-bottom: 14px;
+        }
+        #feedback .employee-insight-card strong {
+            margin-bottom: 30px;
+        }
+        #feedback .employee-insight-card p {
+            line-height: 1.6;
+        }
+        #feedback .employee-table-panel {
+            margin-bottom: 32px;
+        }
+        #feedback .employee-records-section + .employee-records-section {
+            margin-top: 36px;
+        }
+        #feedback .employee-data-table td {
+            padding: 18px 22px;
+        }
+        #feedback .employee-data-table tbody tr {
+            border-bottom: 1px solid var(--neutral-border);
+        }
+        #feedback .employee-data-table tbody tr:last-child {
+            border-bottom: none;
+        }
+        #feedback .employee-data-table td {
+            padding: 18px 22px;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+        #feedback .employee-data-table td strong {
+            display: block;
+            line-height: 1.4;
+        }
+        #feedback .employee-status {
+            display: inline-block;
+            line-height: 1.6;
+            white-space: nowrap;
+        }
+        #feedback .employee-data-table .feedback-items-cell {
+            white-space: nowrap;
+            font-weight: 600;
+            color: var(--neutral-dark);
+        }
+    </style>
+    <div class="employee-insights-grid" data-feedback-insights>
+        <div class="employee-insight-card total">
+            <div>
+                <h3>Avg Review Score</h3>
+                <strong>91%</strong>
+                <p>Average score across all performance reviews</p>
+            </div>
+            <div class="employee-insight-icon">
+                <span class="material-symbols-rounded">analytics</span>
+            </div>
+        </div>
+
+        <div class="employee-insight-card active">
+            <div>
+                <h3>Last Reviewed</h3>
+                <strong>2026-04-18</strong>
+                <p>Most recent review date</p>
+            </div>
+            <div class="employee-insight-icon">
+                <span class="material-symbols-rounded">event_available</span>
+            </div>
+        </div>
+
+        <div class="employee-insight-card new-month">
+            <div>
+                <h3>Reviewer</h3>
+                <strong>HR Manager</strong>
+                <p>Asha Mohamed</p>
+            </div>
+            <div class="employee-insight-icon">
+                <span class="material-symbols-rounded">supervisor_account</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="employee-records-section">
+        <div class="employee-records-header">
+            <div>
+                <h2>Reviewer Feedback</h2>
+                <p>Detailed agenda-based feedback from each performance review session.</p>
+            </div>
+        </div>
+
+        <div class="employee-table-panel" data-feedback-table>
+            <div class="employee-table-scroll">
+                <table class="employee-data-table">
+                    <thead>
+                        <tr>
+                            <th><button type="button" data-feedback-sort-key="date">Review Date <span class="material-symbols-rounded">unfold_more</span></button></th>
+                            <th><button type="button" data-feedback-sort-key="agenda">Agenda <span class="material-symbols-rounded">unfold_more</span></button></th>
+                            <th><button type="button" data-feedback-sort-key="score">Score <span class="material-symbols-rounded">unfold_more</span></button></th>
+                            <th><button type="button" data-feedback-sort-key="status">Status <span class="material-symbols-rounded">unfold_more</span></button></th>
+                            <th><button type="button" data-feedback-sort-key="feedback">Feedback Items <span class="material-symbols-rounded">unfold_more</span></button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="display:none;"></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="employee-table-footer">
+                <span data-feedback-table-summary>Showing 1-3 of 3 reviews</span>
+                <div class="employee-pagination" data-feedback-pagination></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="employee-records-section">
+        <div class="employee-records-header">
+            <div>
+                <h2>Agenda Criteria Breakdown</h2>
+                <p>Per-review agenda item checklist from each performance review session.</p>
+            </div>
+        </div>
+
+        <div class="employee-insights-grid" style="margin-bottom: 32px;">
+            <div class="employee-insight-card total">
+                <div>
+                    <span style="font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;color:var(--neutral-gray);">Review Date</span>
+                    <strong style="margin-top:8px;" data-feedback-detail-date>2026-04-18</strong>
+                </div>
+            </div>
+            <div class="employee-insight-card active">
+                <div>
+                    <span style="font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;color:var(--neutral-gray);">Agenda</span>
+                    <strong style="margin-top:8px;" data-feedback-detail-agenda>Staff Follow Up</strong>
+                </div>
+            </div>
+            <div class="employee-insight-card new-month">
+                <div>
+                    <span style="font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;color:var(--neutral-gray);">Score</span>
+                    <strong style="margin-top:8px;" data-feedback-detail-score>92%</strong>
+                </div>
+            </div>
+            <div class="employee-insight-card total">
+                <div>
+                    <span style="font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;color:var(--neutral-gray);">Criteria Met</span>
+                    <strong style="margin-top:8px;" data-feedback-detail-criteria>3 of 3</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="employee-table-panel">
+            <div class="employee-table-scroll">
+                <table class="employee-data-table">
+                    <thead>
+                        <tr>
+                            <th>Criteria</th>
+                            <th>Description</th>
+                            <th>Score</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Check staff attendance</strong></td>
+                            <td>Verify employee presence records for the review period.</td>
+                            <td><strong>92%</strong></td>
+                            <td><span class="employee-status active">Met</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Follow up staff leave</strong></td>
+                            <td>Confirm leave records and return-to-duty status.</td>
+                            <td><strong>94%</strong></td>
+                            <td><span class="employee-status active">Met</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Update employee files</strong></td>
+                            <td>Validate that all personnel documents are current and filed.</td>
+                            <td><strong>90%</strong></td>
+                            <td><span class="employee-status active">Met</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</section>
 
 <section class="employee-profile-tab-panel" id="payroll" data-employee-tab-panel="payroll">
     <div class="employee-insights-grid">
@@ -4001,6 +4283,381 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+</script>
+
+<script>
+(function () {
+    const currentEmployeeId = '<?php echo htmlspecialchars($employeeId); ?>';
+
+    function getEmployeePerformanceRecords() {
+        return [
+            {
+                employeeId: 'EMP-0001',
+                employeeName: 'Cabdiraxmaan Cali',
+                date: '2026-04-18',
+                department: 'Human Resource',
+                agenda: 'Staff Follow Up',
+                score: 92,
+                label: 'Good',
+                status: 'Top Performer',
+                reviewer: 'Asha Mohamed',
+                reviewerRole: 'HR Manager',
+                note: 'Strong attendance follow-up and maintained employee file standards during the review cycle.',
+                criteria: [
+                    { name: 'Check staff attendance', description: 'Verify employee presence records for the review period.', score: 92, checked: true },
+                    { name: 'Follow up staff leave', description: 'Confirm leave records and return-to-duty status.', score: 94, checked: true },
+                    { name: 'Update employee files', description: 'Validate that all personnel documents are current and filed.', score: 90, checked: true }
+                ]
+            },
+            {
+                employeeId: 'EMP-0001',
+                employeeName: 'Cabdiraxmaan Cali',
+                date: '2026-03-15',
+                department: 'Human Resource',
+                agenda: 'Audit Follow Up',
+                score: 88,
+                label: 'Normal',
+                status: 'Completed',
+                reviewer: 'Asha Mohamed',
+                reviewerRole: 'HR Manager',
+                note: 'Monthly payroll audit was reviewed. One outstanding receipt was followed up the following week.',
+                criteria: [
+                    { name: 'Check payment records', description: 'Reconcile monthly finance entries with approved payroll schedule.', score: 90, checked: true },
+                    { name: 'Follow up missing receipts', description: 'Verify outstanding receipts and obtain missing documentation.', score: 86, checked: true },
+                    { name: 'Prepare simple finance report', description: 'Summarize verified payment activity for management review.', score: 88, checked: false }
+                ]
+            },
+            {
+                employeeId: 'EMP-0001',
+                employeeName: 'Cabdiraxmaan Cali',
+                date: '2026-02-10',
+                department: 'Human Resource',
+                agenda: 'Branch Follow Up',
+                score: 94,
+                label: 'Good',
+                status: 'Top Performer',
+                reviewer: 'Asha Mohamed',
+                reviewerRole: 'HR Manager',
+                note: 'Branch operations review completed with positive feedback on daily task completion.',
+                criteria: [
+                    { name: 'Check branch work', description: 'Review active duty roster and daily branch assignments.', score: 96, checked: true },
+                    { name: 'Follow up daily problems', description: 'Log operational issues and confirm follow-up actions taken.', score: 92, checked: true },
+                    { name: 'Report unfinished tasks', description: 'List delayed assignments and communicate blockers to management.', score: 94, checked: true }
+                ]
+            }
+        ];
+    }
+
+    function renderFeedbackInsightCards(records) {
+        const grid = document.querySelector('#feedback [data-feedback-insights]');
+        if (!grid) return;
+
+        if (!records.length) {
+            grid.innerHTML = '';
+            return;
+        }
+
+        const totalScore = records.reduce((sum, record) => sum + (Number(record.score) || 0), 0);
+        const averageScore = Math.round(totalScore / records.length);
+        const latest = records.reduce((a, b) => (a.date > b.date ? a : b));
+
+        const cards = [
+            {
+                variant: 'total',
+                icon: 'analytics',
+                title: 'Avg Review Score',
+                value: averageScore + '%',
+                description: 'Average score across all performance reviews'
+            },
+            {
+                variant: 'active',
+                icon: 'event_available',
+                title: 'Last Reviewed',
+                value: latest.date,
+                description: 'Most recent review date'
+            },
+            {
+                variant: 'new-month',
+                icon: 'supervisor_account',
+                title: 'Reviewer',
+                value: latest.reviewerRole,
+                description: latest.reviewer || ''
+            }
+        ];
+
+        grid.innerHTML = cards.map(card => `
+            <div class="employee-insight-card ${card.variant}">
+                <div>
+                    <h3>${card.title}</h3>
+                    <strong>${card.value}</strong>
+                    <p>${card.description}</p>
+                </div>
+                <div class="employee-insight-icon">
+                    <span class="material-symbols-rounded">${card.icon}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function statusClass(status) {
+        const normalized = (status || '').toLowerCase();
+        if (['top performer', 'approved', 'completed'].includes(normalized)) return 'active';
+        if (['monitoring', 'pending', 'in progress'].includes(normalized)) return 'late';
+        if (['rejected', 'closed', 'failed', 'need improvement'].includes(normalized)) return 'inactive';
+        if (['leave', 'on leave'].includes(normalized)) return 'leave';
+        return 'active';
+    }
+
+        function renderFeedbackCriteria
+(records) {
+        const container = document.querySelector('#feedback [data-feedback-criteria-list]');
+        const detailDate = document.querySelector('#feedback [data-feedback-detail-date]');
+        const detailAgenda = document.querySelector('#feedback [data-feedback-detail-agenda]');
+        const detailScore = document.querySelector('#feedback [data-feedback-detail-score]');
+        const detailCriteria = document.querySelector('#feedback [data-feedback-detail-criteria]');
+        const detailNote = document.querySelector('#feedback [data-feedback-detail-note]');
+
+        if (!container) return;
+
+        function updateCriteriaSection(record) {
+            const criteriaItems = (record.criteria || []).map(item => {
+                const statusLabel = item.checked ? 'Met' : 'Partially Met';
+                const statusClass = item.checked ? 'active' : 'late';
+                return `
+                    <tr data-criteria-name="${item.name}">
+                        <td><strong>${item.name}</strong></td>
+                        <td>${item.description}</td>
+                        <td><strong>${item.score}%</strong></td>
+                        <td><span class="employee-status ${statusClass}">${statusLabel}</span></td>
+                    </tr>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="employee-table-panel">
+                    <div class="employee-table-scroll">
+                        <table class="employee-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Criteria</th>
+                                    <th>Description</th>
+                                    <th>Score</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${criteriaItems}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+
+            if (detailDate) detailDate.textContent = record.date || '';
+            if (detailAgenda) detailAgenda.textContent = record.agenda || '';
+            if (detailScore) detailScore.textContent = (record.score || 0) + '%';
+            if (detailCriteria) {
+                const met = (record.criteria || []).filter(item => item.checked).length;
+                const total = (record.criteria || []).length;
+                detailCriteria.textContent = `${met} of ${total}`;
+            }
+            if (detailNote) detailNote.textContent = record.note || '';
+        }
+
+        if (records.length > 0) {
+            updateCriteriaSection(records[0]);
+        } else {
+            container.innerHTML = '<p style="color: var(--neutral-gray); font-weight: 600;">No agenda criteria available yet.</p>';
+        }
+    }
+
+    function initFeedbackTableFromRecords(records) {
+        const panel = document.querySelector('#feedback [data-feedback-table]');
+        if (!panel) return;
+
+        const table = panel.querySelector('.employee-data-table');
+        const tbody = table ? table.querySelector('tbody') : null;
+        const summary = panel.querySelector('[data-feedback-table-summary]');
+        const pagination = panel.querySelector('[data-feedback-pagination]');
+
+        if (!table || !tbody || !summary || !pagination) return;
+
+        tbody.innerHTML = records.map(record => {
+            const criteriaMet = `${(record.criteria || []).filter(item => item.checked).length} of ${(record.criteria || []).length} criteria met`;
+            return `
+                <tr data-feedback-date="${record.date || ''}" data-feedback-agenda="${record.agenda || ''}" data-feedback-score="${record.score || 0}" data-feedback-label="${record.label || ''}" data-feedback-status="${record.status || ''}" data-feedback-checked="${(record.criteria || []).filter(item => item.checked).length}" data-feedback-total="${(record.criteria || []).length}">
+                    <td>${record.date || ''}</td>
+                    <td>${record.agenda || ''}</td>
+                    <td><strong>${(record.score || 0)}%</strong></td>
+                    <td><span class="employee-status ${statusClass(record.status)}">${record.status || ''}</span></td>
+                    <td>${criteriaMet}</td>
+                </tr>
+            `;
+        }).join('');
+
+        tbody.querySelectorAll('tr').forEach(row => {
+            const agendaKey = row.getAttribute('data-feedback-agenda') || '';
+            const matchingRecord = records.find(r => (r.agenda || '') === agendaKey);
+            if (matchingRecord) {
+                row.addEventListener('click', () => {
+                    renderFeedbackCriteria([matchingRecord]);
+                });
+            }
+        });
+
+        const pageSize = 4;
+        const allRows = Array.from(tbody.querySelectorAll('tr'));
+        let currentPage = 1;
+        let sortKey = '';
+        let sortDirection = 'asc';
+
+        function getRowValue(row, key) {
+            const datasetKey = 'feedback' + key.charAt(0).toUpperCase() + key.slice(1);
+            return (row.dataset[datasetKey] || '').trim();
+        }
+
+        function sortRows(rows) {
+            if (!sortKey) return rows;
+            return [...rows].sort((a, b) => {
+                const aValue = getRowValue(a, sortKey);
+                const bValue = getRowValue(b, sortKey);
+
+                if (sortKey === 'score') {
+                    return sortDirection === 'asc'
+                        ? Number(aValue) - Number(bValue)
+                        : Number(bValue) - Number(aValue);
+                }
+
+                if (sortKey === 'date') {
+                    return sortDirection === 'asc'
+                        ? new Date(aValue) - new Date(bValue)
+                        : new Date(bValue) - new Date(aValue);
+                }
+
+                return sortDirection === 'asc'
+                    ? aValue.localeCompare(bValue)
+                    : bValue.localeCompare(aValue);
+            });
+        }
+
+        function renderPagination(totalPages) {
+            pagination.innerHTML = '';
+
+            const previousButton = document.createElement('button');
+            previousButton.type = 'button';
+            previousButton.textContent = '<';
+            previousButton.disabled = currentPage === 1;
+            previousButton.addEventListener('click', () => {
+                currentPage -= 1;
+                renderFeedbackPagination();
+            });
+            pagination.appendChild(previousButton);
+
+            for (let page = 1; page <= totalPages; page += 1) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = page;
+                button.classList.toggle('active', page === currentPage);
+                button.addEventListener('click', () => {
+                    currentPage = page;
+                    renderFeedbackPagination();
+                });
+                pagination.appendChild(button);
+            }
+
+            const nextButton = document.createElement('button');
+            nextButton.type = 'button';
+            nextButton.textContent = '>';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.addEventListener('click', () => {
+                currentPage += 1;
+                renderFeedbackPagination();
+            });
+            pagination.appendChild(nextButton);
+        }
+
+        function renderFeedbackPagination() {
+            const sortedRows = sortRows(allRows);
+            const totalPages = Math.max(1, Math.ceil(sortedRows.length / pageSize));
+
+            if (currentPage > totalPages) {
+                currentPage = totalPages;
+            }
+
+            const start = (currentPage - 1) * pageSize;
+            const pageRows = sortedRows.slice(start, start + pageSize);
+
+            allRows.forEach(row => {
+                row.style.display = 'none';
+            });
+
+            pageRows.forEach(row => {
+                row.style.display = '';
+                tbody.appendChild(row);
+            });
+
+            const from = sortedRows.length ? start + 1 : 0;
+            const to = Math.min(start + pageSize, sortedRows.length);
+            summary.textContent = `Showing ${from}-${to} of ${sortedRows.length} reviews`;
+            renderPagination(totalPages);
+        }
+
+        table.querySelectorAll('[data-feedback-sort-key]').forEach(button => {
+            button.addEventListener('click', () => {
+                const nextSortKey = button.dataset.feedbackSortKey;
+                if (sortKey === nextSortKey) {
+                    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortKey = nextSortKey;
+                    sortDirection = 'asc';
+                }
+                currentPage = 1;
+                renderFeedbackPagination();
+            });
+        });
+
+        renderFeedbackPagination();
+    }
+
+    function initFeedbackTab() {
+        const records = getEmployeePerformanceRecords().filter(
+            record => record.employeeId === currentEmployeeId
+        );
+
+        if (!records.length) {
+            const tableBody = document.querySelector('#feedback tbody');
+            const criteriaContainer = document.querySelector('#feedback [data-feedback-criteria-list]');
+
+            if (tableBody) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align:center; padding: 32px; color: var(--neutral-gray); font-weight: 600;">
+                            No performance reviews found for this employee yet.
+                        </td>
+                    </tr>
+                `;
+            }
+            if (criteriaContainer) {
+                criteriaContainer.innerHTML = `
+                    <p style="color: var(--neutral-gray); font-weight: 600; padding: 16px 0;">
+                        Complete performance reviews for this employee to see agenda-based feedback here.
+                    </p>
+                `;
+            }
+            return;
+        }
+
+        renderFeedbackInsightCards(records);
+        initFeedbackTableFromRecords(records);
+        renderFeedbackCriteria(records);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFeedbackTab);
+    } else {
+        initFeedbackTab();
+    }
+})();
 </script>
 
 <?php
