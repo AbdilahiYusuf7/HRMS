@@ -1,7 +1,7 @@
             </main>
             <!-- Page Content Ends Here -->
 
-            <!-- Main Footer -->i mean the 
+            <!-- Main Footer -->
             <footer class="footer">
                 <div class="footer-container">
                     <p>&copy; <?php echo date("Y"); ?> Human Resource Mangement System. All rights reserved.</p>
