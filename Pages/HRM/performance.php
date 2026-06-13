@@ -811,7 +811,8 @@ include '../../includes/header_sidebar.php';
         grid-template-columns: repeat(2, minmax(280px, 1fr));
     }
 
-    .performance-add-form-grid .form-group:first-child {
+    .performance-add-form-grid .form-group:first-child,
+    .performance-add-form-grid .form-group.full {
         grid-column: 1 / -1;
     }
 
@@ -867,7 +868,8 @@ include '../../includes/header_sidebar.php';
             grid-template-columns: 1fr;
         }
 
-        .performance-add-form-grid .form-group:first-child {
+        .performance-add-form-grid .form-group:first-child,
+        .performance-add-form-grid .form-group.full {
             grid-column: auto;
         }
 
@@ -1254,7 +1256,7 @@ include '../../includes/header_sidebar.php';
         <div class="performance-agenda-modal-header">
             <div>
                 <h2 id="performanceAgendaTitle" data-performance-agenda-title>Human Resource Manager</h2>
-                <p data-performance-agenda-subtitle>Staff Follow Up | 2 employees under this department</p>
+                <p data-performance-agenda-subtitle>Staff Follow Up | 2 assigned employees</p>
             </div>
             <button type="button" class="performance-agenda-modal-close" data-performance-agenda-close aria-label="Close agenda detail">
                 <span class="material-symbols-rounded">close</span>
@@ -1271,7 +1273,7 @@ include '../../includes/header_sidebar.php';
                 </ul>
             </div>
 
-            <h3 class="performance-assignment-title">Assign Agenda To Employees</h3>
+            <h3 class="performance-assignment-title">Assigned Employees</h3>
             <div class="performance-assignment-grid" data-performance-assignment-list>
                 <article class="performance-assignment-card">
                     <div>
@@ -1330,6 +1332,11 @@ include '../../includes/header_sidebar.php';
                     <div class="form-group">
                         <label class="form-label" for="add-agenda-description">Short Description</label>
                         <input type="text" id="add-agenda-description" class="form-control" placeholder="One-line description shown on the card">
+                    </div>
+
+                    <div class="form-group full">
+                        <label class="form-label" for="add-agenda-work">Work To Do</label>
+                        <textarea id="add-agenda-work" class="form-control" rows="3" placeholder="e.g. Collect July expenses, review department requests, and prepare the final budget" required></textarea>
                     </div>
 
                     <div class="form-group">
@@ -1448,7 +1455,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var agendaDetails = {
         hr: {
             title: 'Human Resource Manager',
-            subtitle: 'Staff Follow Up | 2 employees under this department',
+            subtitle: 'Staff Follow Up | 2 assigned employees',
             items: ['Check staff attendance', 'Follow up staff leave', 'Update employee files'],
             employees: [
                 { name: 'Cabdiraxmaan Cali', meta: 'EMP-0001 | Human Resource Officer | Idaacada Branch' },
@@ -1457,7 +1464,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         finance: {
             title: 'Head of Finances',
-            subtitle: 'Audit Follow Up | 2 employees under this department',
+            subtitle: 'Audit Follow Up | 2 assigned employees',
             items: ['Check payment records', 'Follow up missing receipts', 'Prepare simple finance report'],
             employees: [
                 { name: 'Fadumo Xasan', meta: 'EMP-0002 | Finance Officer | Idaacada Branch' },
@@ -1466,7 +1473,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         operations: {
             title: 'Operations Manager',
-            subtitle: 'Branch Follow Up | 2 employees under this department',
+            subtitle: 'Branch Follow Up | 2 assigned employees',
             items: ['Check branch work', 'Follow up daily problems', 'Report unfinished tasks'],
             employees: [
                 { name: 'Mahad Axmed', meta: 'EMP-0003 | Operations Supervisor | Idaacada Branch' },
@@ -1475,7 +1482,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         marketing: {
             title: 'Marketing Manager',
-            subtitle: 'Customer Follow Up | 2 employees under this department',
+            subtitle: 'Customer Follow Up | 2 assigned employees',
             items: ['Call customers', 'Share new offers', 'Write customer feedback'],
             employees: [
                 { name: 'Sahra Maxamed', meta: 'EMP-0004 | Marketing Coordinator | Idaacada Branch' },
@@ -1484,7 +1491,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         manager: {
             title: 'Manager',
-            subtitle: 'Office Work Follow Up | 2 employees under this department',
+            subtitle: 'Office Work Follow Up | 2 assigned employees',
             items: ['Check office records', 'Arrange daily work', 'Follow up pending documents'],
             employees: [
                 { name: 'Hodan Ali', meta: 'EMP-0005 | Administration Officer | Idaacada Branch' },
@@ -1493,7 +1500,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         it: {
             title: 'IT Manager',
-            subtitle: 'Computer And Website Check | 2 employees under this department',
+            subtitle: 'Computer And Website Check | 2 assigned employees',
             items: ['Diagnose website problems', 'Fix computers', 'Help staff with system issues'],
             employees: [
                 { name: 'Mustafe Cabdi', meta: 'EMP-0006 | Systems Support Engineer | Idaacada Branch' },
@@ -1520,7 +1527,11 @@ document.addEventListener('DOMContentLoaded', function () {
             agendaList.appendChild(listItem);
         });
 
-        detail.employees.forEach(function (employee) {
+        var assignedEmployees = (detail.employees || []).filter(function (employee) {
+            return employee.assigned !== false;
+        });
+
+        assignedEmployees.forEach(function (employee) {
             var card = document.createElement('article');
             var content = document.createElement('div');
             var name = document.createElement('strong');
@@ -1860,6 +1871,18 @@ document.addEventListener('DOMContentLoaded', function () {
         addEmployee.disabled = !employees.length;
     }
 
+    function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, function (character) {
+            return {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            }[character];
+        });
+    }
+
     var addAgendaButton = document.querySelector('.performance-add-agenda');
     if (addAgendaButton) {
         addAgendaButton.addEventListener('click', openAddModal);
@@ -1880,44 +1903,64 @@ document.addEventListener('DOMContentLoaded', function () {
     if (addForm) {
         addForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            var title = (document.getElementById('add-agenda-title') || {}).value || '';
+            var title = ((document.getElementById('add-agenda-title') || {}).value || '').trim();
             var departmentKey = (addDepartment || {}).value || '';
-            var description = (document.getElementById('add-agenda-description') || {}).value || '';
+            var description = ((document.getElementById('add-agenda-description') || {}).value || '').trim();
+            var workToDo = ((document.getElementById('add-agenda-work') || {}).value || '').trim();
             var assignedEmployee = (addEmployee || {}).value || '';
-            if (!title || !departmentKey || !assignedEmployee) return;
+            if (!title || !departmentKey || !workToDo || !assignedEmployee) return;
 
             var deptLabel = (addDepartment.options[addDepartment.selectedIndex] || {}).textContent || departmentKey;
             var employeeLabel = (addEmployee.options[addEmployee.selectedIndex] || {}).textContent || assignedEmployee;
+            var employeeMeta = '';
+            var departmentEmployees = employeeDirectory[departmentKey] || [];
+            departmentEmployees.forEach(function (employee) {
+                if (employee.name === assignedEmployee) {
+                    employeeMeta = employee.meta;
+                }
+            });
+            var detailKey = 'custom-' + departmentKey + '-' + Date.now();
+            var cardDescription = description || workToDo;
+
+            agendaDetails[detailKey] = {
+                title: deptLabel,
+                subtitle: title + ' | 1 assigned employee',
+                items: [workToDo],
+                employees: [
+                    { name: employeeLabel, meta: employeeMeta || deptLabel, assigned: true }
+                ]
+            };
+
             var grid = document.querySelector('[data-performance-panel="agenda"] .performance-agenda-grid');
             if (grid) {
                 var card = document.createElement('article');
                 card.className = 'performance-agenda-card';
                 card.setAttribute('role', 'button');
                 card.setAttribute('tabindex', '0');
-                card.setAttribute('data-performance-agenda-card', departmentKey);
+                card.setAttribute('data-performance-agenda-card', detailKey);
                 card.innerHTML = '<div class="performance-agenda-top">' +
                     '<div>' +
-                        '<span class="performance-agenda-owner">' + deptLabel + '</span>' +
-                        '<h3>' + title + '</h3>' +
+                        '<span class="performance-agenda-owner">' + escapeHtml(deptLabel) + '</span>' +
+                        '<h3>' + escapeHtml(title) + '</h3>' +
                     '</div>' +
                     '<div class="performance-agenda-icon">' +
                         '<span class="material-symbols-rounded">checklist</span>' +
                     '</div>' +
                 '</div>' +
-                '<p>' + description + '</p>' +
+                '<p>' + escapeHtml(cardDescription) + '</p>' +
                 '<div class="performance-agenda-meta">' +
-                    '<span>New agenda</span>' +
+                    '<span>1 point</span>' +
                     '<span>1 employee</span>' +
                 '</div>';
                 grid.appendChild(card);
 
                 card.addEventListener('click', function () {
-                    openAgendaModal(departmentKey);
+                    openAgendaModal(detailKey);
                 });
                 card.addEventListener('keydown', function (event) {
                     if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault();
-                        openAgendaModal(departmentKey);
+                        openAgendaModal(detailKey);
                     }
                 });
             }
