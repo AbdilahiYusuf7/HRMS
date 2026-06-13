@@ -816,6 +816,57 @@ include '../../includes/header_sidebar.php';
         grid-column: 1 / -1;
     }
 
+    .performance-work-points {
+        display: grid;
+        gap: 12px;
+    }
+
+    .performance-work-point-row {
+        display: flex;
+        gap: 10px;
+    }
+
+    .performance-work-point-row .form-control {
+        flex: 1;
+    }
+
+    .performance-work-point-remove,
+    .performance-work-point-add {
+        align-items: center;
+        border: none;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        display: inline-flex;
+        font: inherit;
+        font-weight: 900;
+        justify-content: center;
+        transition: var(--transition-fast);
+    }
+
+    .performance-work-point-remove {
+        background-color: rgba(239, 68, 68, 0.12);
+        color: #b91c1c;
+        flex: 0 0 44px;
+        width: 44px;
+    }
+
+    .performance-work-point-remove:hover {
+        background-color: #dc2626;
+        color: var(--neutral-white);
+    }
+
+    .performance-work-point-add {
+        background-color: var(--secondary-light);
+        color: var(--neutral-darkest);
+        justify-self: flex-start;
+        padding: 12px 18px;
+    }
+
+    .performance-work-point-add:hover {
+        background-color: var(--secondary-color);
+        color: var(--neutral-white);
+    }
+
     .performance-add-actions {
         display: flex;
         gap: 14px;
@@ -1335,8 +1386,16 @@ include '../../includes/header_sidebar.php';
                     </div>
 
                     <div class="form-group full">
-                        <label class="form-label" for="add-agenda-work">Work To Do</label>
-                        <textarea id="add-agenda-work" class="form-control" rows="3" placeholder="e.g. Collect July expenses, review department requests, and prepare the final budget" required></textarea>
+                        <label class="form-label">Work To Do</label>
+                        <div class="performance-work-points" data-agenda-work-points>
+                            <div class="performance-work-point-row">
+                                <input type="text" class="form-control add-agenda-work-point" placeholder="e.g. Collect July expenses">
+                                <button type="button" class="performance-work-point-remove" data-remove-work-point aria-label="Remove work point">
+                                    <span class="material-symbols-rounded">close</span>
+                                </button>
+                            </div>
+                            <button type="button" class="performance-work-point-add" data-add-work-point>Add Point</button>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -1426,6 +1485,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var addForm = document.getElementById('performanceAddForm');
     var addDepartment = document.getElementById('add-agenda-department');
     var addEmployee = document.getElementById('add-agenda-employee');
+    var addWorkPoints = document.querySelector('[data-agenda-work-points]');
+    var addWorkPointButton = document.querySelector('[data-add-work-point]');
     var employeeDirectory = {
         hr: [
             { name: 'Cabdiraxmaan Cali', meta: 'EMP-0001 | Human Resource Officer | Idaacada Branch' },
@@ -1849,6 +1910,7 @@ document.addEventListener('DOMContentLoaded', function () {
         addEmployee.innerHTML = '<option value="" disabled selected>Select department first</option>';
         addEmployee.disabled = true;
         if (addForm) addForm.reset();
+        resetWorkPoints();
     }
 
     function closeAddModal() {
@@ -1869,6 +1931,59 @@ document.addEventListener('DOMContentLoaded', function () {
             addEmployee.appendChild(option);
         });
         addEmployee.disabled = !employees.length;
+    }
+
+    function updateWorkPointRemoveButtons() {
+        if (!addWorkPoints) return;
+        var rows = Array.prototype.slice.call(addWorkPoints.querySelectorAll('.performance-work-point-row'));
+        rows.forEach(function (row) {
+            var removeButton = row.querySelector('[data-remove-work-point]');
+            if (removeButton) {
+                removeButton.disabled = rows.length === 1;
+            }
+        });
+    }
+
+    function createWorkPointRow(value) {
+        var row = document.createElement('div');
+        var input = document.createElement('input');
+        var removeButton = document.createElement('button');
+        var icon = document.createElement('span');
+
+        row.className = 'performance-work-point-row';
+        input.type = 'text';
+        input.className = 'form-control add-agenda-work-point';
+        input.placeholder = 'e.g. Review department requests';
+        input.value = value || '';
+        removeButton.type = 'button';
+        removeButton.className = 'performance-work-point-remove';
+        removeButton.setAttribute('data-remove-work-point', '');
+        removeButton.setAttribute('aria-label', 'Remove work point');
+        icon.className = 'material-symbols-rounded';
+        icon.textContent = 'close';
+
+        removeButton.appendChild(icon);
+        row.appendChild(input);
+        row.appendChild(removeButton);
+        return row;
+    }
+
+    function resetWorkPoints() {
+        if (!addWorkPoints || !addWorkPointButton) return;
+        addWorkPoints.querySelectorAll('.performance-work-point-row').forEach(function (row) {
+            row.remove();
+        });
+        addWorkPoints.insertBefore(createWorkPointRow(''), addWorkPointButton);
+        updateWorkPointRemoveButtons();
+    }
+
+    function getWorkPoints() {
+        if (!addWorkPoints) return [];
+        return Array.prototype.slice.call(addWorkPoints.querySelectorAll('.add-agenda-work-point'))
+            .map(function (input) {
+                return input.value.trim();
+            })
+            .filter(Boolean);
     }
 
     function escapeHtml(value) {
@@ -1900,15 +2015,36 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    if (addWorkPointButton && addWorkPoints) {
+        addWorkPointButton.addEventListener('click', function () {
+            addWorkPoints.insertBefore(createWorkPointRow(''), addWorkPointButton);
+            updateWorkPointRemoveButtons();
+            var rows = addWorkPoints.querySelectorAll('.performance-work-point-row');
+            var lastInput = rows.length ? rows[rows.length - 1].querySelector('.add-agenda-work-point') : null;
+            if (lastInput) lastInput.focus();
+        });
+
+        addWorkPoints.addEventListener('click', function (event) {
+            var removeButton = event.target.closest('[data-remove-work-point]');
+            if (!removeButton) return;
+            var rows = addWorkPoints.querySelectorAll('.performance-work-point-row');
+            if (rows.length <= 1) return;
+            removeButton.closest('.performance-work-point-row').remove();
+            updateWorkPointRemoveButtons();
+        });
+
+        updateWorkPointRemoveButtons();
+    }
+
     if (addForm) {
         addForm.addEventListener('submit', function (event) {
             event.preventDefault();
             var title = ((document.getElementById('add-agenda-title') || {}).value || '').trim();
             var departmentKey = (addDepartment || {}).value || '';
             var description = ((document.getElementById('add-agenda-description') || {}).value || '').trim();
-            var workToDo = ((document.getElementById('add-agenda-work') || {}).value || '').trim();
+            var workPoints = getWorkPoints();
             var assignedEmployee = (addEmployee || {}).value || '';
-            if (!title || !departmentKey || !workToDo || !assignedEmployee) return;
+            if (!title || !departmentKey || !workPoints.length || !assignedEmployee) return;
 
             var deptLabel = (addDepartment.options[addDepartment.selectedIndex] || {}).textContent || departmentKey;
             var employeeLabel = (addEmployee.options[addEmployee.selectedIndex] || {}).textContent || assignedEmployee;
@@ -1920,12 +2056,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
             var detailKey = 'custom-' + departmentKey + '-' + Date.now();
-            var cardDescription = description || workToDo;
+            var cardDescription = description || workPoints[0];
+            var pointLabel = workPoints.length + ' point' + (workPoints.length === 1 ? '' : 's');
 
             agendaDetails[detailKey] = {
                 title: deptLabel,
                 subtitle: title + ' | 1 assigned employee',
-                items: [workToDo],
+                items: workPoints,
                 employees: [
                     { name: employeeLabel, meta: employeeMeta || deptLabel, assigned: true }
                 ]
@@ -1949,7 +2086,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 '</div>' +
                 '<p>' + escapeHtml(cardDescription) + '</p>' +
                 '<div class="performance-agenda-meta">' +
-                    '<span>1 point</span>' +
+                    '<span>' + escapeHtml(pointLabel) + '</span>' +
                     '<span>1 employee</span>' +
                 '</div>';
                 grid.appendChild(card);
