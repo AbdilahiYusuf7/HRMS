@@ -719,6 +719,168 @@ include '../../includes/header_sidebar.php';
         font-weight: 900;
     }
 
+    .performance-add-modal {
+        align-items: center;
+        display: none;
+        inset: 0;
+        justify-content: center;
+        padding: 32px;
+        position: fixed;
+        z-index: 1450;
+    }
+
+    .performance-add-modal.open {
+        display: flex;
+    }
+
+    .performance-add-backdrop {
+        background-color: rgba(15, 23, 42, 0.62);
+        backdrop-filter: blur(6px);
+        inset: 0;
+        position: absolute;
+    }
+
+    .performance-add-dialog {
+        background: linear-gradient(135deg, rgba(240, 249, 255, 0.96), rgba(255, 255, 255, 0.96) 48%, rgba(255, 241, 247, 0.94));
+        border: 1px solid var(--neutral-border);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 28px 80px rgba(15, 23, 42, 0.24);
+        max-height: min(760px, calc(100vh - 64px));
+        overflow: hidden;
+        position: relative;
+        width: min(860px, 100%);
+        z-index: 1;
+    }
+
+    .performance-add-modal-header {
+        align-items: flex-start;
+        border-bottom: 1px solid rgba(203, 213, 225, 0.75);
+        display: flex;
+        gap: 24px;
+        justify-content: space-between;
+        padding: 34px 38px 24px;
+    }
+
+    .performance-add-modal-header h2 {
+        color: var(--neutral-darkest);
+        font-size: 1.55rem;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    .performance-add-modal-header p {
+        color: #94a3b8;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.4;
+    }
+
+    .performance-add-modal-close {
+        align-items: center;
+        background-color: var(--primary-color);
+        border: none;
+        border-radius: var(--radius-md);
+        color: var(--neutral-white);
+        cursor: pointer;
+        display: inline-flex;
+        flex: 0 0 auto;
+        height: 58px;
+        justify-content: center;
+        transition: var(--transition-fast);
+        width: 58px;
+    }
+
+    .performance-add-modal-close:hover {
+        background-color: var(--secondary-color);
+        color: var(--neutral-white);
+    }
+
+    .performance-add-modal-close .material-symbols-rounded {
+        font-size: 26px;
+    }
+
+    .performance-add-modal-body {
+        padding: 34px 38px 38px;
+        overflow: auto;
+        max-height: calc(min(760px, calc(100vh - 64px)) - 130px);
+    }
+
+    .performance-add-form-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(2, minmax(280px, 1fr));
+    }
+
+    .performance-add-form-grid .form-group:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .performance-add-actions {
+        display: flex;
+        gap: 14px;
+        justify-content: flex-end;
+        padding-top: 28px;
+        margin-top: 12px;
+        border-top: 1px solid var(--neutral-border);
+    }
+
+    .performance-add-cancel {
+        background-color: var(--secondary-light);
+        border: none;
+        border-radius: var(--radius-md);
+        color: var(--neutral-darkest);
+        cursor: pointer;
+        font: inherit;
+        font-size: 1rem;
+        font-weight: 900;
+        min-width: 126px;
+        padding: 15px 24px;
+        transition: var(--transition-fast);
+    }
+
+    .performance-add-cancel:hover {
+        background-color: var(--secondary-color);
+        color: var(--neutral-white);
+    }
+
+    .performance-add-submit {
+        background-color: var(--primary-color);
+        border: none;
+        border-radius: var(--radius-md);
+        color: var(--neutral-white);
+        cursor: pointer;
+        font: inherit;
+        font-size: 1rem;
+        font-weight: 900;
+        min-width: 160px;
+        padding: 15px 24px;
+        transition: var(--transition-fast);
+    }
+
+    .performance-add-submit:hover {
+        background-color: var(--secondary-color);
+        color: var(--neutral-white);
+    }
+
+    @media (max-width: 640px) {
+        .performance-add-form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .performance-add-form-grid .form-group:first-child {
+            grid-column: auto;
+        }
+
+        .performance-add-dialog {
+            width: 100%;
+        }
+
+        .performance-add-modal-header,
+        .performance-add-modal-body {
+            padding: 24px;
+        }
+    }
+
     .performance-review-actions {
         display: flex;
         gap: 14px;
@@ -886,9 +1048,9 @@ include '../../includes/header_sidebar.php';
                         <span class="material-symbols-rounded">checklist</span>
                     </div>
                 </div>
-                <p>Check staff attendance</p>
+                <p>Attendance, leave, and files check</p>
                 <div class="performance-agenda-meta">
-                    <span>3 agenda points</span>
+                    <span>3 points</span>
                     <span>2 employees</span>
                 </div>
             </article>
@@ -896,16 +1058,16 @@ include '../../includes/header_sidebar.php';
             <article class="performance-agenda-card" role="button" tabindex="0" data-performance-agenda-card="finance">
                 <div class="performance-agenda-top">
                     <div>
-                        <span class="performance-agenda-owner">Head Of Finances</span>
+                        <span class="performance-agenda-owner">Head of Finances</span>
                         <h3>Audit Follow Up</h3>
                     </div>
                     <div class="performance-agenda-icon">
                         <span class="material-symbols-rounded">checklist</span>
                     </div>
                 </div>
-                <p>Check payment records</p>
+                <p>Payments, receipts, and reports</p>
                 <div class="performance-agenda-meta">
-                    <span>3 agenda points</span>
+                    <span>3 points</span>
                     <span>2 employees</span>
                 </div>
             </article>
@@ -920,9 +1082,9 @@ include '../../includes/header_sidebar.php';
                         <span class="material-symbols-rounded">checklist</span>
                     </div>
                 </div>
-                <p>Check branch work</p>
+                <p>Branch work and daily tasks</p>
                 <div class="performance-agenda-meta">
-                    <span>3 agenda points</span>
+                    <span>3 points</span>
                     <span>2 employees</span>
                 </div>
             </article>
@@ -937,9 +1099,9 @@ include '../../includes/header_sidebar.php';
                         <span class="material-symbols-rounded">checklist</span>
                     </div>
                 </div>
-                <p>Call customers</p>
+                <p>Calls, offers, and feedback</p>
                 <div class="performance-agenda-meta">
-                    <span>3 agenda points</span>
+                    <span>3 points</span>
                     <span>2 employees</span>
                 </div>
             </article>
@@ -948,15 +1110,15 @@ include '../../includes/header_sidebar.php';
                 <div class="performance-agenda-top">
                     <div>
                         <span class="performance-agenda-owner">Manager</span>
-                        <h3>Office Work Follow Up</h3>
+                        <h3>Office Follow Up</h3>
                     </div>
                     <div class="performance-agenda-icon">
                         <span class="material-symbols-rounded">checklist</span>
                     </div>
                 </div>
-                <p>Check office records</p>
+                <p>Records, daily work, documents</p>
                 <div class="performance-agenda-meta">
-                    <span>3 agenda points</span>
+                    <span>3 points</span>
                     <span>2 employees</span>
                 </div>
             </article>
@@ -965,15 +1127,15 @@ include '../../includes/header_sidebar.php';
                 <div class="performance-agenda-top">
                     <div>
                         <span class="performance-agenda-owner">IT Manager</span>
-                        <h3>Computer And Website Check</h3>
+                        <h3>System Check</h3>
                     </div>
                     <div class="performance-agenda-icon">
                         <span class="material-symbols-rounded">checklist</span>
                     </div>
                 </div>
-                <p>Diagnose website problems</p>
+                <p>Computers, website, and staff support</p>
                 <div class="performance-agenda-meta">
-                    <span>3 agenda points</span>
+                    <span>3 points</span>
                     <span>2 employees</span>
                 </div>
             </article>
@@ -1131,6 +1293,62 @@ include '../../includes/header_sidebar.php';
     </section>
 </div>
 
+<div class="performance-add-modal" id="performanceAddModal" aria-hidden="true">
+    <div class="performance-add-backdrop" data-performance-add-close></div>
+    <section class="performance-add-dialog" role="dialog" aria-modal="true" aria-labelledby="performanceAddTitle">
+        <div class="performance-add-modal-header">
+            <div>
+                <h2 id="performanceAddTitle">Create New Performance Agenda</h2>
+                <p id="performanceAddSubtitle">Define the agenda title, assign a department, and select employees.</p>
+            </div>
+            <button type="button" class="performance-add-modal-close" data-performance-add-close aria-label="Close add agenda">
+                <span class="material-symbols-rounded">close</span>
+            </button>
+        </div>
+
+        <div class="performance-add-modal-body">
+            <form class="performance-add-form" id="performanceAddForm">
+                <div class="performance-add-form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="add-agenda-title">Agenda Title</label>
+                        <input type="text" id="add-agenda-title" class="form-control" placeholder="e.g. Staff Follow Up" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="add-agenda-department">Department</label>
+                        <select id="add-agenda-department" class="form-control" required>
+                            <option value="" disabled selected>Select department</option>
+                            <option value="hr">Human Resource Manager</option>
+                            <option value="finance">Head of Finances</option>
+                            <option value="operations">Operations Manager</option>
+                            <option value="marketing">Marketing Manager</option>
+                            <option value="manager">Manager</option>
+                            <option value="it">IT Manager</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="add-agenda-description">Short Description</label>
+                        <input type="text" id="add-agenda-description" class="form-control" placeholder="One-line description shown on the card">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="add-agenda-employee">Assign To Employee</label>
+                        <select id="add-agenda-employee" class="form-control" disabled required>
+                            <option value="" disabled selected>Select department first</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="performance-add-actions">
+                    <button type="button" class="performance-add-cancel" data-performance-add-close>Cancel</button>
+                    <button type="submit" class="performance-add-submit">Create Agenda</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
 <div class="performance-review-modal" id="performanceReviewModal" aria-hidden="true">
     <div class="performance-review-backdrop" data-performance-review-close></div>
     <section class="performance-review-dialog" role="dialog" aria-modal="true" aria-labelledby="performanceReviewTitle">
@@ -1197,6 +1415,36 @@ document.addEventListener('DOMContentLoaded', function () {
     var reviewRole = reviewModal ? reviewModal.querySelector('[data-performance-review-role]') : null;
     var reviewBranch = reviewModal ? reviewModal.querySelector('[data-performance-review-branch]') : null;
     var reviewItems = reviewModal ? reviewModal.querySelector('[data-performance-review-items]') : null;
+    var addModal = document.getElementById('performanceAddModal');
+    var addForm = document.getElementById('performanceAddForm');
+    var addDepartment = document.getElementById('add-agenda-department');
+    var addEmployee = document.getElementById('add-agenda-employee');
+    var employeeDirectory = {
+        hr: [
+            { name: 'Cabdiraxmaan Cali', meta: 'EMP-0001 | Human Resource Officer | Idaacada Branch' },
+            { name: 'Amina Yusuf', meta: 'EMP-0008 | Talent Officer | Idaacada Branch' }
+        ],
+        finance: [
+            { name: 'Fadumo Xasan', meta: 'EMP-0002 | Finance Officer | Idaacada Branch' },
+            { name: 'Roda Jama', meta: 'EMP-0007 | Financial Analyst | Idaacada Branch' }
+        ],
+        operations: [
+            { name: 'Mahad Axmed', meta: 'EMP-0003 | Operations Supervisor | Idaacada Branch' },
+            { name: 'Nimco Abdi', meta: 'EMP-0012 | Operations Officer | Idaacada Branch' }
+        ],
+        marketing: [
+            { name: 'Sahra Maxamed', meta: 'EMP-0004 | Marketing Coordinator | Idaacada Branch' },
+            { name: 'Ahmed Jama', meta: 'EMP-0009 | Marketing Associate | Idaacada Branch' }
+        ],
+        manager: [
+            { name: 'Hodan Ali', meta: 'EMP-0005 | Administration Officer | Idaacada Branch' },
+            { name: 'Mohamed Yusuf', meta: 'EMP-0010 | Records Coordinator | Idaacada Branch' }
+        ],
+        it: [
+            { name: 'Mustafe Cabdi', meta: 'EMP-0006 | Systems Support Engineer | Idaacada Branch' },
+            { name: 'Ilwad Noor', meta: 'EMP-0011 | Software Developer | Idaacada Branch' }
+        ]
+    };
     var agendaDetails = {
         hr: {
             title: 'Human Resource Manager',
@@ -1316,12 +1564,17 @@ document.addEventListener('DOMContentLoaded', function () {
         return (row.dataset[key] || '').trim();
     }
 
-    function getReviewAgendaItems(agenda) {
-        var matchedKey = Object.keys(agendaDetails).filter(function (key) {
-            return agendaDetails[key].subtitle.indexOf(agenda + ' |') === 0;
-        })[0];
+    var agendaItemsLookup = {
+        'Staff Follow Up': ['Attendance check', 'Leave check', 'Files check'],
+        'Audit Follow Up': ['Payment check', 'Receipt check', 'Report check'],
+        'Branch Follow Up': ['Branch check', 'Daily tasks', 'Unfinished work'],
+        'Customer Follow Up': ['Customer calls', 'New offers', 'Feedback record'],
+        'Office Follow Up': ['Records check', 'Daily work', 'Documents check'],
+        'System Check': ['Computer check', 'Website check', 'Staff support']
+    };
 
-        return matchedKey ? agendaDetails[matchedKey].items : [];
+    function getReviewAgendaItems(agenda) {
+        return agendaItemsLookup[agenda] || ['General review'];
     }
 
     function openReviewModal(row) {
@@ -1576,7 +1829,112 @@ document.addEventListener('DOMContentLoaded', function () {
             renderReviewTable();
         }
     }
+    function openAddModal() {
+        if (!addModal) return;
+        addModal.classList.add('open');
+        addModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        addDepartment.value = '';
+        addEmployee.innerHTML = '<option value="" disabled selected>Select department first</option>';
+        addEmployee.disabled = true;
+        if (addForm) addForm.reset();
+    }
+
+    function closeAddModal() {
+        if (!addModal) return;
+        addModal.classList.remove('open');
+        addModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function populateEmployeeDropdown(departmentKey) {
+        if (!addEmployee) return;
+        addEmployee.innerHTML = '<option value="" disabled selected>Select employee</option>';
+        const employees = employeeDirectory[departmentKey] || [];
+        employees.forEach(function (employee) {
+            const option = document.createElement('option');
+            option.value = employee.name;
+            option.textContent = employee.name;
+            addEmployee.appendChild(option);
+        });
+        addEmployee.disabled = !employees.length;
+    }
+
+    var addAgendaButton = document.querySelector('.performance-add-agenda');
+    if (addAgendaButton) {
+        addAgendaButton.addEventListener('click', openAddModal);
+    }
+
+    if (addModal) {
+        addModal.querySelectorAll('[data-performance-add-close]').forEach(function (button) {
+            button.addEventListener('click', closeAddModal);
+        });
+    }
+
+    if (addDepartment) {
+        addDepartment.addEventListener('change', function () {
+            populateEmployeeDropdown(addDepartment.value);
+        });
+    }
+
+    if (addForm) {
+        addForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var title = (document.getElementById('add-agenda-title') || {}).value || '';
+            var departmentKey = (addDepartment || {}).value || '';
+            var description = (document.getElementById('add-agenda-description') || {}).value || '';
+            var assignedEmployee = (addEmployee || {}).value || '';
+            if (!title || !departmentKey || !assignedEmployee) return;
+
+            var deptLabel = (addDepartment.options[addDepartment.selectedIndex] || {}).textContent || departmentKey;
+            var employeeLabel = (addEmployee.options[addEmployee.selectedIndex] || {}).textContent || assignedEmployee;
+            var grid = document.querySelector('[data-performance-panel="agenda"] .performance-agenda-grid');
+            if (grid) {
+                var card = document.createElement('article');
+                card.className = 'performance-agenda-card';
+                card.setAttribute('role', 'button');
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('data-performance-agenda-card', departmentKey);
+                card.innerHTML = '<div class="performance-agenda-top">' +
+                    '<div>' +
+                        '<span class="performance-agenda-owner">' + deptLabel + '</span>' +
+                        '<h3>' + title + '</h3>' +
+                    '</div>' +
+                    '<div class="performance-agenda-icon">' +
+                        '<span class="material-symbols-rounded">checklist</span>' +
+                    '</div>' +
+                '</div>' +
+                '<p>' + description + '</p>' +
+                '<div class="performance-agenda-meta">' +
+                    '<span>New agenda</span>' +
+                    '<span>1 employee</span>' +
+                '</div>';
+                grid.appendChild(card);
+
+                card.addEventListener('click', function () {
+                    openAgendaModal(departmentKey);
+                });
+                card.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openAgendaModal(departmentKey);
+                    }
+                });
+            }
+
+            closeAddModal();
+        });
+    }
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            if (addModal && addModal.classList.contains('open')) {
+                closeAddModal();
+            }
+        }
+    });
 });
+
 </script>
 
 <?php include '../../includes/footer.php'; ?>
